@@ -1,179 +1,327 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" data-theme="dark" data-lang="en">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ayoub Mohamed Samir — Resume</title>
+<title>Ayoub Mohamed Samir</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
 <style>
-@page { size: A4; margin: 0; }
-@media print {
-  body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
-  .no-print { display: none; }
-}
-* { margin: 0; padding: 0; box-sizing: border-box; }
-:root {
-  --bg: #0D0D0D; --bg2: #141418; --bg3: #1A1A22;
-  --gold: #D4A853; --gold-dim: #B8923A; --gold-glow: rgba(212,168,83,0.15);
-  --teal: #2EC4B6; --white: #F0EDE6;
-  --gray: #8A8A8A; --gray-light: #ABABAB; --accent: #E76F51;
-}
-body { background: var(--bg); color: var(--white); font-family: 'Source Sans 3', sans-serif; font-size: 13.5px; line-height: 1.55; max-width: 900px; margin: 0 auto; }
+@page{size:A4;margin:12mm}
+@media print{html{-webkit-print-color-adjust:exact!important;print-color-adjust:exact!important}.no-print,.controls,.scroll-top,canvas#particles{display:none!important}body{max-width:100%!important;font-size:10px!important}.hero{padding:15px 25px!important}.content{padding:0 25px!important}.story-expand{display:none!important}.story-body{display:block!important;max-height:none!important;opacity:1!important;padding:8px 12px!important}.job-more{display:none!important}.job-details{display:block!important;max-height:none!important;opacity:1!important;padding:8px 12px!important}.animate-in{opacity:1!important;transform:none!important}}
+*{margin:0;padding:0;box-sizing:border-box}
+:root,[data-theme="dark"]{--bg:#08080D;--bg2:#0E0E15;--bg3:#16161F;--bg4:#1C1C28;--gold:#D4A853;--gold-dim:#B8923A;--gold-glow:rgba(212,168,83,0.10);--teal:#2EC4B6;--teal-dim:rgba(46,196,182,0.12);--white:#EDEAE3;--gray:#6E6E80;--gray-light:#9E9EB0;--card-border:rgba(212,168,83,0.08);--story-bg:rgba(212,168,83,0.04);--story-border:rgba(212,168,83,0.12);--hero-bg:linear-gradient(145deg,#08080D 0%,#0E0E15 50%,#0C0C18 100%)}
+[data-theme="light"]{--bg:#FAF9F6;--bg2:#F2EFE8;--bg3:#E8E5DC;--bg4:#DDD9D0;--gold:#A87D28;--gold-dim:#8A6520;--gold-glow:rgba(168,125,40,0.06);--teal:#1A9088;--teal-dim:rgba(26,144,136,0.08);--white:#1A1A28;--gray:#6B6B78;--gray-light:#4A4A58;--card-border:rgba(168,125,40,0.12);--story-bg:rgba(168,125,40,0.04);--story-border:rgba(168,125,40,0.15);--hero-bg:linear-gradient(145deg,#FAF9F6 0%,#F2EFE8 50%,#F6F3EC 100%)}
+/* LANG TOGGLE */
+.l{display:none}
+[data-lang="en"] .l.en{display:inline}
+[data-lang="ru"] .l.ru{display:inline}
+[data-lang="en"] .lb.en{display:block}
+[data-lang="ru"] .lb.ru{display:block}
+.lb{display:none}
 
-.hero { background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 40%, #14141E 100%); padding: 50px 50px 35px; position: relative; overflow: hidden; border-bottom: 2px solid var(--gold); }
-.hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px; background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%); pointer-events: none; }
-.hero::after { content: 'SYSTEMS THINKER • PRODUCT VISIONARY • FOUNDER'; position: absolute; bottom: 12px; right: 50px; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 4px; color: var(--gold-dim); opacity: 0.4; }
-.name { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 42px; color: var(--white); letter-spacing: 1px; line-height: 1.1; }
-.name span { color: var(--gold); }
-.tagline { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin: 10px 0 15px; }
-.contact-row { display: flex; gap: 25px; flex-wrap: wrap; font-size: 12px; color: var(--gray-light); }
-.contact-row a { color: var(--teal); text-decoration: none; }
-
-.content { padding: 0 50px 40px; }
-.summary { padding: 30px 0; border-bottom: 1px solid rgba(212,168,83,0.15); font-size: 14px; color: var(--gray-light); line-height: 1.65; font-weight: 300; }
-.summary strong { color: var(--white); font-weight: 600; }
-
-.section-header { display: flex; align-items: center; gap: 15px; margin: 32px 0 18px; }
-.section-header .line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-dim) 0%, transparent 100%); }
-.section-header h2 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; }
-.section-header .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold-dim); opacity: 0.5; }
-
-.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
-.project-card { background: var(--bg3); border: 1px solid rgba(212,168,83,0.12); border-radius: 6px; padding: 18px; position: relative; }
-.project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); border-radius: 6px 0 0 6px; }
-.project-card h3 { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; color: var(--teal); margin-bottom: 6px; }
-.project-card p { font-size: 11.5px; color: var(--gray); line-height: 1.5; }
-
-.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-.skill-block h3 { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid rgba(212,168,83,0.2); }
-.skill-block li { list-style: none; font-size: 11.5px; color: var(--gray-light); padding: 2px 0 2px 12px; position: relative; }
-.skill-block li::before { content: '›'; position: absolute; left: 0; color: var(--gold-dim); font-weight: bold; }
-
-.job { padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
-.job:last-child { border-bottom: none; }
-.job-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 5px; margin-bottom: 3px; }
-.job-title { font-weight: 700; font-size: 14px; color: var(--white); }
-.job-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold-dim); letter-spacing: 1px; }
-.job-company { font-size: 12px; color: var(--teal); margin-bottom: 8px; }
-.job ul { list-style: none; padding: 0; }
-.job li { font-size: 12.5px; color: var(--gray-light); padding: 3px 0 3px 18px; position: relative; line-height: 1.5; }
-.job li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 10px; top: 4px; }
-.highlight { color: var(--white); font-weight: 600; }
-
-.achievement { display: flex; gap: 12px; padding: 10px 0; }
-.achievement .icon { font-size: 14px; color: var(--gold); line-height: 1.6; }
-.achievement p { font-size: 12.5px; color: var(--gray-light); line-height: 1.5; }
-.achievement strong { color: var(--white); }
-
-.edu-row { font-size: 12.5px; color: var(--gray-light); padding: 4px 0; }
-.edu-row strong { color: var(--white); font-weight: 600; }
-.edu-row .tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gold); background: rgba(212,168,83,0.1); padding: 2px 6px; border-radius: 3px; margin-left: 5px; }
-.languages { font-size: 12px; color: var(--gray-light); padding: 5px 0; }
-.languages strong { color: var(--white); }
-.vault-item { display: flex; align-items: baseline; gap: 10px; padding: 4px 0; }
-.vault-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); min-width: 20px; }
-.vault-name { font-weight: 600; color: var(--white); font-size: 12.5px; }
-.vault-desc { font-size: 11.5px; color: var(--gray); }
-.footer-quote { text-align: center; padding: 30px 0 40px; border-top: 1px solid rgba(212,168,83,0.2); margin-top: 30px; }
-.footer-quote p { font-family: 'Playfair Display', serif; font-size: 15px; font-style: italic; color: var(--gold); }
-.print-btn { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: var(--bg); border: none; padding: 12px 24px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 1px; cursor: pointer; border-radius: 4px; z-index: 100; }
-.print-btn:hover { background: var(--gold-dim); }
+body{background:var(--bg);color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:13.5px;line-height:1.55;max-width:920px;margin:0 auto;transition:all .5s;position:relative;overflow-x:hidden}
+canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.35}
+.controls{position:fixed;top:15px;right:15px;display:flex;gap:8px;z-index:1000}
+.ctrl-btn{background:var(--bg3);border:1px solid var(--card-border);color:var(--gold);width:40px;height:40px;border-radius:50%;cursor:pointer;font-size:16px;display:flex;align-items:center;justify-content:center;transition:all .3s;backdrop-filter:blur(12px)}
+.ctrl-btn:hover{background:var(--gold);color:var(--bg);transform:scale(1.1);box-shadow:0 0 20px var(--gold-glow)}
+.scroll-top{position:fixed;bottom:20px;right:20px;background:var(--gold);color:var(--bg);width:44px;height:44px;border-radius:50%;border:none;cursor:pointer;font-size:18px;display:none;align-items:center;justify-content:center;z-index:1000;box-shadow:0 4px 20px rgba(212,168,83,.3);transition:all .3s}
+.expand-all{background:var(--bg3);border:1px solid var(--card-border);color:var(--gold);padding:6px 14px;border-radius:20px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:1px;transition:all .3s}
+.expand-all:hover{background:var(--gold);color:var(--bg)}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+@keyframes glowPulse{0%,100%{opacity:.2}50%{opacity:.5}}
+.animate-in{opacity:0;transform:translateY(25px);transition:opacity .6s ease,transform .6s ease}
+.animate-in.visible{opacity:1;transform:translateY(0)}
+.hero{background:var(--hero-bg);padding:55px 50px 40px;position:relative;overflow:hidden;border-bottom:2px solid var(--gold);z-index:1}
+.hero::before{content:'';position:absolute;top:-60%;right:-20%;width:550px;height:550px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);pointer-events:none;animation:glowPulse 5s ease-in-out infinite}
+.hero-stats{display:flex;gap:25px;margin-top:18px;flex-wrap:wrap}
+.stat-box{text-align:center}.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold);line-height:1}.stat-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-top:3px}
+.name{font-family:'Playfair Display',serif;font-weight:900;font-size:44px;color:var(--white);letter-spacing:1px;line-height:1.1;opacity:0;animation:fadeUp .8s ease forwards .3s}
+.name span{color:var(--gold)}
+.tagline{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin:12px 0 16px;opacity:0;animation:fadeUp .8s ease forwards .5s}
+.contact-row{display:flex;gap:20px;flex-wrap:wrap;font-size:12px;color:var(--gray-light);opacity:0;animation:fadeUp .8s ease forwards .7s}
+.contact-row a{color:var(--teal);text-decoration:none}.contact-row a:hover{color:var(--gold)}
+.content{padding:0 50px 50px;position:relative;z-index:1}
+.summary{padding:30px 0;border-bottom:1px solid var(--card-border);font-size:14.5px;color:var(--gray-light);line-height:1.7;font-weight:300}
+.summary strong{color:var(--white);font-weight:600}
+.inline-stat{display:inline-block;background:var(--gold-glow);border:1px solid var(--card-border);padding:0 8px;border-radius:4px;font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold);font-weight:500}
+.section-header{display:flex;align-items:center;gap:15px;margin:35px 0 20px}
+.section-header .line{flex:1;height:1px;background:linear-gradient(90deg,var(--gold-dim) 0%,transparent 100%)}
+.section-header h2{font-family:'Playfair Display',serif;font-size:16px;font-weight:700;color:var(--gold);letter-spacing:2px;text-transform:uppercase;white-space:nowrap}
+.section-header .num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);opacity:.5;min-width:18px}
+.thinking-card{background:var(--bg3);border:1px solid var(--card-border);border-radius:10px;margin:15px 0;overflow:hidden;transition:all .3s}
+.thinking-card:hover{border-color:var(--gold-dim);box-shadow:0 4px 30px rgba(0,0,0,.2)}
+.thinking-header{display:flex;align-items:center;gap:12px;padding:16px 20px}
+.thinking-icon{width:36px;height:36px;background:var(--gold-glow);border:1px solid var(--card-border);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.thinking-meta{flex:1}.thinking-title{font-weight:700;font-size:14px;color:var(--white)}.thinking-sub{font-size:11px;color:var(--teal);font-family:'JetBrains Mono',monospace;margin-top:2px}
+.story-expand{background:none;border:1px solid var(--card-border);color:var(--gold);padding:4px 12px;border-radius:15px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;transition:all .3s;white-space:nowrap;display:flex;align-items:center;gap:5px}
+.story-expand:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.story-expand .arrow{transition:transform .3s;display:inline-block}.story-expand.open .arrow{transform:rotate(180deg)}
+.story-body{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s ease,opacity .4s ease,padding .4s ease;padding:0 20px;background:var(--story-bg);border-top:1px solid transparent}
+.story-body.open{max-height:800px;opacity:1;padding:16px 20px;border-top:1px solid var(--story-border)}
+.story-body p{font-size:12.5px;color:var(--gray-light);line-height:1.65;margin-bottom:8px}.story-body p:last-child{margin-bottom:0}
+.story-body .story-label{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold-dim);letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.story-body .impact{display:inline-block;background:var(--teal-dim);border:1px solid rgba(46,196,182,.15);color:var(--teal);font-family:'JetBrains Mono',monospace;font-size:10px;padding:2px 8px;border-radius:4px;margin-top:6px}
+.story-body strong{color:var(--white)}
+.projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px}
+.project-card{background:var(--bg3);border:1px solid var(--card-border);border-radius:8px;padding:20px;position:relative;transition:all .3s}
+.project-card:hover{transform:translateY(-2px);box-shadow:0 6px 30px rgba(0,0,0,.2);border-color:var(--gold-dim)}
+.project-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold);border-radius:8px 0 0 8px}
+.project-card h3{font-family:'JetBrains Mono',monospace;font-size:14px;color:var(--teal);margin-bottom:6px}
+.project-card .badge{font-family:'JetBrains Mono',monospace;font-size:9px;background:var(--teal-dim);color:var(--teal);padding:2px 8px;border-radius:3px;display:inline-block;margin-bottom:8px}
+.project-card p{font-size:11.5px;color:var(--gray);line-height:1.55}
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.skill-block h3{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:2px;text-transform:uppercase;margin-bottom:10px;padding-bottom:6px;border-bottom:1px solid var(--card-border)}
+.skill-block li{list-style:none;font-size:11.5px;color:var(--gray-light);padding:3px 0 3px 14px;position:relative;transition:color .2s}
+.skill-block li::before{content:'›';position:absolute;left:0;color:var(--gold-dim);font-weight:bold}.skill-block li:hover{color:var(--white)}
+.timeline{position:relative;padding-left:28px}
+.timeline::before{content:'';position:absolute;left:7px;top:0;bottom:0;width:1px;background:linear-gradient(to bottom,var(--gold) 0%,var(--card-border) 100%)}
+.job{padding:20px 0;border-bottom:1px solid rgba(255,255,255,.03);position:relative}
+.job::before{content:'';position:absolute;left:-24px;top:26px;width:9px;height:9px;background:var(--gold);border-radius:50%;border:2px solid var(--bg);transition:all .3s;z-index:2}
+.job:hover::before{transform:scale(1.5);box-shadow:0 0 15px var(--gold-glow)}
+.job:last-child{border-bottom:none}
+.job-header{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:5px;margin-bottom:4px}
+.job-title{font-weight:700;font-size:14.5px;color:var(--white)}.job-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold-dim);letter-spacing:1px}
+.job-company{font-size:12px;color:var(--teal);margin-bottom:8px}
+.job ul{list-style:none;padding:0}.job li{font-size:12.5px;color:var(--gray-light);padding:3px 0 3px 18px;position:relative;line-height:1.55}
+.job li::before{content:'▸';position:absolute;left:0;color:var(--gold);font-size:10px;top:5px}
+.highlight{color:var(--white);font-weight:600}
+.achievement{display:flex;gap:14px;padding:12px 0}
+.achievement .diamond{width:8px;height:8px;min-width:8px;background:var(--gold);transform:rotate(45deg);margin-top:6px}
+.achievement p{font-size:12.5px;color:var(--gray-light);line-height:1.55}.achievement strong{color:var(--white)}
+.edu-row{font-size:12.5px;color:var(--gray-light);padding:5px 0}.edu-row strong{color:var(--white)}
+.tag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gold);background:var(--gold-glow);padding:2px 7px;border-radius:3px;margin-left:5px;border:1px solid var(--card-border)}
+.languages{font-size:12.5px;color:var(--gray-light);padding:5px 0}.languages strong{color:var(--white)}
+.vault-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px 20px}
+.vault-item{display:flex;align-items:baseline;gap:8px;padding:5px 0;transition:transform .2s}.vault-item:hover{transform:translateX(5px)}
+.vault-num{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);min-width:18px}
+.vault-name{font-weight:600;color:var(--white);font-size:12.5px}.vault-desc{font-size:11px;color:var(--gray)}
+.job-more{background:none;border:1px solid var(--card-border);color:var(--gold);padding:3px 10px;border-radius:12px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:9px;letter-spacing:1px;transition:all .3s;margin-top:6px;display:inline-flex;align-items:center;gap:4px}
+.job-more:hover{background:var(--gold);color:var(--bg);border-color:var(--gold)}
+.job-more .arrow{transition:transform .3s;display:inline-block}
+.job-more.open .arrow{transform:rotate(180deg)}
+.job-details{max-height:0;overflow:hidden;opacity:0;transition:max-height .5s ease,opacity .4s ease,padding .3s ease;padding:0;background:var(--story-bg);border-radius:6px;margin-top:0}
+.job-details.open{max-height:600px;opacity:1;padding:12px 16px;margin-top:8px}
+.job-details li{font-size:12px;color:var(--gray-light);padding:3px 0 3px 16px;position:relative;line-height:1.55}
+.job-details li::before{content:'▸';position:absolute;left:0;color:var(--teal);font-size:10px;top:4px}
+.vault-active{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--teal);background:var(--teal-dim);padding:1px 6px;border-radius:2px;margin-left:3px}
+.footer-quote{text-align:center;padding:35px 0 15px;border-top:1px solid var(--card-border);margin-top:35px}
+.footer-quote p{font-family:'Playfair Display',serif;font-size:16px;font-style:italic;color:var(--gold)}
+.footer-meta{text-align:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gray);padding:10px 0 40px;letter-spacing:2px}
+@media(max-width:650px){.hero{padding:30px 20px}.content{padding:0 20px 40px}.name{font-size:28px}.projects-grid,.skills-grid,.vault-grid{grid-template-columns:1fr}.hero-stats{gap:15px}.stat-num{font-size:22px}}
 </style>
 </head>
 <body>
+<canvas id="particles"></canvas>
+<div class="controls no-print"><button class="ctrl-btn" onclick="toggleTheme()" id="themeBtn">🌙</button><button class="ctrl-btn" onclick="toggleLang()" id="langBtn">RU</button><button class="ctrl-btn" onclick="window.print()">🖨</button></div>
+<button class="scroll-top no-print" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <div class="hero">
-  <div class="name">AYOUB <span>MOHAMED</span> SAMIR</div>
-  <div class="tagline">Product Visionary · Systems Architect · Founder</div>
-  <div class="contact-row">
-    <span>Moscow, Russia</span>
-    <span>Egyptian National</span>
-    <span>7agtyadmin@gmail.com</span>
-    <span><a href="https://github.com/ChesnoTech">github.com/ChesnoTech</a></span>
-  </div>
-</div>
+<div class="name">AYOUB <span>MOHAMED</span> SAMIR</div>
+<div class="tagline"><span class="l en">Product Visionary · Systems Architect · Founder</span><span class="l ru">Продуктовый визионер · Системный архитектор · Основатель</span></div>
+<div class="contact-row"><span>📍 <span class="l en">Moscow, Russia</span><span class="l ru">Москва, Россия</span></span><span>✉ 7agtyadmin@gmail.com</span><span>💻 <a href="https://github.com/ChesnoTech">github.com/ChesnoTech</a></span></div>
+<div class="hero-stats" style="opacity:0;animation:fadeUp .8s ease forwards .9s">
+<div class="stat-box"><div class="stat-num">20+</div><div class="stat-label"><span class="l en">Years</span><span class="l ru">Лет</span></div></div>
+<div class="stat-box"><div class="stat-num">10+</div><div class="stat-label"><span class="l en">Parallel projects</span><span class="l ru">Параллельных проектов</span></div></div>
+<div class="stat-box"><div class="stat-num">6</div><div class="stat-label"><span class="l en">Inventions</span><span class="l ru">Изобретений</span></div></div>
+<div class="stat-box"><div class="stat-num">4×</div><div class="stat-label"><span class="l en">Replaced by</span><span class="l ru">Человек на замену</span></div></div>
+<div class="stat-box"><div class="stat-num">0</div><div class="stat-label"><span class="l en">Formal IT training</span><span class="l ru">Формального IT-обучения</span></div></div>
+</div></div>
 
 <div class="content">
-<div class="summary">
-  <strong>Twenty years of building what doesn't exist yet.</strong> Self-taught technologist, operations leader, and product architect who consistently replaces teams of 4–10 people as a solo operator. From presenting a <strong>national digital currency plan to Egypt's Central Bank in 2006</strong> — a decade before Bitcoin — to designing a <strong>124-feature mobility platform</strong> today, I see systems others can't imagine and find ways to build them.
+
+<div class="summary animate-in">
+<div class="lb en"><strong>Twenty years of building what doesn't exist yet.</strong> Self-taught technologist who follows the same cycle at every job: arrive, get hands-on, observe what's broken, reimagine the workflow, then <strong>build the technology that fixes it</strong>. This process has made me consistently replace teams of <span class="inline-stat">4–10 people</span> as a solo operator — from presenting a <strong>national digital currency plan to Egypt's Central Bank in 2006</strong> to designing a <strong>mobility platform with multiple novel concepts</strong> no competitor has built.</div>
+<div class="lb ru"><strong>Двадцать лет создания того, чего ещё не существует.</strong> Самоучка-технолог, который на каждой работе следует одному циклу: погрузиться, увидеть проблему, переосмыслить процесс, <strong>построить технологию, которая это исправит</strong>. Этот подход позволяет мне стабильно заменять команды из <span class="inline-stat">4–10 человек</span> — от представления <strong>плана национальной цифровой валюты в ЦБ Египта в 2006</strong> до проектирования <strong>платформы мобильности с уникальными концепциями</strong>, не имеющими аналогов.</div>
 </div>
 
-<div class="section-header"><span class="num">01</span><h2>What I'm Building</h2><div class="line"></div></div>
-<div class="projects-grid">
-  <div class="project-card"><h3>CommutePilot</h3><p>Commute autopilot with 124+ features. 7-signal sensor fusion alarm that works underground. Dynamic delivery to predicted locations. Invisible transit mapping. No competitor has any of this.</p></div>
-  <div class="project-card"><h3>OEM Activation System v2.0</h3><p>Windows license management for PC assembly. MySQL + PHP REST API + PowerShell. Full rewrite from legacy. Built with Claude Code. Live on GitHub.</p></div>
+<!-- 01 HOW I THINK -->
+<div class="section-header animate-in"><span class="num">01</span><h2><span class="l en">How I Think</span><span class="l ru">Как я мыслю</span></h2><div class="line"></div><button class="expand-all no-print" onclick="toggleAll()"><span class="l en">EXPAND ALL</span><span class="l ru">РАСКРЫТЬ ВСЕ</span></button></div>
+
+<!-- MASTER PATTERN -->
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">🔄</div><div class="thinking-meta"><div class="thinking-title"><span class="l en">My Process: Arrive → Observe → Reimagine → Build</span><span class="l ru">Мой процесс: Прийти → Увидеть → Переосмыслить → Построить</span></div><div class="thinking-sub"><span class="l en">THE MASTER PATTERN · EVERY JOB · 20 YEARS</span><span class="l ru">ГЛАВНЫЙ ПАТТЕРН · КАЖДАЯ РАБОТА · 20 ЛЕТ</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">THE STORY</span><span class="l ru">ИСТОРИЯ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><div class="story-label">THE CYCLE</div><p>Across 20 years and every role, the same cycle repeats: I <strong>enter a new environment</strong> with zero assumptions. I get my hands dirty — doing the actual work, feeling the friction. Then my mind starts analyzing: <strong>why is this slow? Why does this break? What's the bottleneck?</strong></p><p>Once I see the friction, I can't unsee it. I start imagining a different workflow — better quality, faster speed, more logical structure. Then I study how <strong>technology can close the gap</strong>.</p><div class="story-label">THE PROOF — EVERY SINGLE JOB</div><p><strong>IM Solutions:</strong> Arrived at call center → saw hosting team struggling → self-taught servers at night → sites in 5 days vs 1 month</p><p><strong>TMT Egypt:</strong> Arrived at operations → zero cost visibility → built Excel tracking the owner called impossible → saved more than my salary</p><p><strong>AI Training:</strong> Arrived as transcriber → 1-2 week review cycles → built self-learning QA sheet → #1 in quality and productivity</p><p><strong>PC Company:</strong> Arrived at assembly → unoptimized software, no tracking → built activation system, price monitoring, repurposed support software into order tracker</p><p><strong>Commuting daily:</strong> Experienced exhausting friction → imagined a journey autopilot → designed CommutePilot</p><div class="impact">I enter a system. I see what's broken. I build what fixes it.</div></div>
+<div class="lb ru"><div class="story-label">ЦИКЛ</div><p>За 20 лет на каждой работе повторяется один цикл: я <strong>вхожу в новую среду</strong> без предположений. Погружаюсь в работу, чувствую трение. Мозг начинает анализировать: <strong>почему это медленно? Почему ломается? Где узкое место?</strong></p><p>Когда я вижу проблему — не могу её развидеть. Начинаю представлять другой рабочий процесс. Затем изучаю, как <strong>технология может закрыть разрыв</strong>.</p><div class="story-label">ДОКАЗАТЕЛЬСТВО — КАЖДАЯ РАБОТА</div><p><strong>IM Solutions:</strong> Пришёл в колл-центр → увидел проблемы хостинга → изучил серверы ночью → сайты за 5 дней вместо 1 месяца</p><p><strong>TMT Египет:</strong> Пришёл в операции → нулевая видимость затрат → построил систему учёта, которую владелец считал невозможной</p><p><strong>AI Training:</strong> Пришёл транскриптором → циклы проверки 1-2 недели → создал самообучающуюся QA-систему → #1 по качеству</p><p><strong>Компания ПК:</strong> Пришёл на сборку → неоптимизированное ПО → создал систему активации, мониторинг цен, адаптировал IT-систему для заказов</p><p><strong>Ежедневные поездки:</strong> Почувствовал трение → представил автопилот для поездок → спроектировал CommutePilot</p><div class="impact">Вхожу в систему. Вижу, что сломано. Строю то, что это исправит.</div></div>
+</div></div>
+
+<!-- PATTERN RECOGNITION -->
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">🔍</div><div class="thinking-meta"><div class="thinking-title"><span class="l en">I See Systems Before They Exist</span><span class="l ru">Я вижу системы до их создания</span></div><div class="thinking-sub"><span class="l en">PATTERN RECOGNITION · 2006</span><span class="l ru">РАСПОЗНАВАНИЕ ПАТТЕРНОВ · 2006</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">THE STORY</span><span class="l ru">ИСТОРИЯ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><div class="story-label">THE MOMENT</div><p>In <strong>2006</strong>, as a university student, I mapped out how Egypt's entire economy could transition from cash to digital over 14 years. A <strong>complete phased plan</strong> with banking infrastructure and merchant adoption.</p><p>Presented to <strong>Egypt's Central Bank</strong>. Nothing happened. Two years later, <strong>Bitcoin launched</strong>. A decade later, every central bank started CBDC programs.</p><p>Same period: independently conceived <strong>metamaterial cloaking</strong> (Duke University demonstrated it months later) and <strong>solar-pumped lasers</strong> (real technology now).</p><div class="impact">PATTERN: Ideas arrive 10–20 years before the market</div></div>
+<div class="lb ru"><div class="story-label">МОМЕНТ</div><p>В <strong>2006</strong> году, будучи студентом, я составил план перехода экономики Египта от наличных к цифровым за 14 лет. <strong>Полный план</strong> с банковской инфраструктурой и стратегией внедрения.</p><p>Представил в <strong>Центральном Банке Египта</strong>. Ничего не произошло. Через два года появился <strong>Bitcoin</strong>. Через десять лет — программы CBDC.</p><p>В тот же период: независимо придумал <strong>метаматериальную маскировку</strong> (Duke University продемонстрировал через месяцы) и <strong>солнечный лазер</strong>.</p><div class="impact">ПАТТЕРН: Идеи приходят на 10–20 лет раньше рынка</div></div>
+</div></div>
+
+<!-- SELF-LEARNING -->
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">⚙️</div><div class="thinking-meta"><div class="thinking-title"><span class="l en">I Build Self-Learning Systems From Nothing</span><span class="l ru">Я создаю самообучающиеся системы с нуля</span></div><div class="thinking-sub"><span class="l en">SYSTEMS THINKING · AI TRAINING</span><span class="l ru">СИСТЕМНОЕ МЫШЛЕНИЕ · AI TRAINING</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">THE STORY</span><span class="l ru">ИСТОРИЯ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><div class="story-label">THE PROBLEM</div><p>Arabic transcription for AI training. Every file: transcribe → upload → wait → auditor finds mistakes → redo. <strong>One file: 1–2 weeks.</strong></p><div class="story-label">MY SOLUTION</div><p>Built a <strong>self-learning QA system in Excel</strong>. Fed every error. The sheet auto-checked future work against all known patterns.</p><p><strong>99% accuracy. #1 productivity.</strong> Tried to share — team couldn't believe it existed.</p><div class="impact">PATTERN: I automate quality before anyone asks</div></div>
+<div class="lb ru"><div class="story-label">ПРОБЛЕМА</div><p>Арабская транскрипция для обучения ИИ. Каждый файл: транскрибировать → загрузить → ждать → аудитор находит ошибки → переделать. <strong>Один файл: 1–2 недели.</strong></p><div class="story-label">МОЁ РЕШЕНИЕ</div><p>Создал <strong>самообучающуюся QA-систему в Excel</strong>. Загружал каждую ошибку. Система автоматически проверяла будущие работы.</p><p><strong>99% точность. #1 по продуктивности.</strong> Пытался поделиться — команда не поверила.</p><div class="impact">ПАТТЕРН: Я автоматизирую качество до того, как попросят</div></div>
+</div></div>
+
+<!-- IMPOSSIBLE PROBLEMS -->
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">💡</div><div class="thinking-meta"><div class="thinking-title"><span class="l en">I Solve "Impossible" Problems With Existing Tools</span><span class="l ru">Я решаю «невозможные» задачи существующими инструментами</span></div><div class="thinking-sub"><span class="l en">CREATIVE PROBLEM SOLVING · TMT</span><span class="l ru">КРЕАТИВНОЕ РЕШЕНИЕ ПРОБЛЕМ · TMT</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">THE STORY</span><span class="l ru">ИСТОРИЯ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><div class="story-label">THE "IMPOSSIBLE" PROBLEM</div><p>Owner needed labor cost per project. Workers moved between sites daily. <strong>"Impossible to calculate."</strong></p><div class="story-label">MY APPROACH</div><p>Excel distributing worker hours using supervisor data. Zero to <strong>exact cost breakdown</strong>. First audit caught significant overpayments.</p><p>Later: smart home alternative at <strong>70–80% less</strong> with MORE functionality. At the PC company, repurposed IT support software as <strong>order fulfillment tracker</strong> — because tracking requests and tracking orders are the same workflow.</p><div class="impact">PATTERN: The tool exists. I see a different use for it.</div></div>
+<div class="lb ru"><div class="story-label">«НЕВОЗМОЖНАЯ» ЗАДАЧА</div><p>Владельцу нужна стоимость труда по проектам. Рабочие перемещаются между объектами. <strong>«Невозможно рассчитать.»</strong></p><div class="story-label">МОЙ ПОДХОД</div><p>Excel с распределением часов по данным прорабов. От нуля до <strong>точной разбивки затрат</strong>. Первый аудит выявил значительные переплаты.</p><p>Позже: альтернатива умного дома на <strong>70–80% дешевле</strong> с большим функционалом. В компании ПК адаптировал IT-систему поддержки как <strong>трекер заказов</strong> — потому что отслеживание заявок и заказов — один рабочий процесс.</p><div class="impact">ПАТТЕРН: Инструмент существует. Я вижу другое применение.</div></div>
+</div></div>
+
+<!-- ETHICS -->
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">🛡️</div><div class="thinking-meta"><div class="thinking-title"><span class="l en">I Protect Quality Even When Nobody Asks</span><span class="l ru">Я защищаю качество, даже когда не просят</span></div><div class="thinking-sub"><span class="l en">ETHICS · AI INDUSTRY</span><span class="l ru">ЭТИКА · ИНДУСТРИЯ ИИ</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">THE STORY</span><span class="l ru">ИСТОРИЯ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><div class="story-label">WHAT I DISCOVERED</div><p>A <strong>shadow economy</strong>: Europeans registered for $18/hr AI projects, outsourced to developing countries at $4/hr. Training data for <strong>Google, Apple, Microsoft, Amazon</strong> was terrible.</p><div class="story-label">WHAT I DID</div><p>Reported it. Nobody listened. Built my own operation: <strong>writers, trainers, QC team, remote monitoring, custom browser extensions</strong>, intensive exams.</p><div class="impact">PRINCIPLE: "I prefer to be poor before anyone gets hurt because of me"</div></div>
+<div class="lb ru"><div class="story-label">ЧТО Я ОБНАРУЖИЛ</div><p><strong>Теневая экономика</strong>: европейцы регистрировались на проекты по $18/час, отдавали работу в развивающиеся страны по $4/час. Данные для <strong>Google, Apple, Microsoft, Amazon</strong> были ужасного качества.</p><div class="story-label">ЧТО Я СДЕЛАЛ</div><p>Сообщил руководству. Никто не слушал. Построил свою операцию: <strong>авторы, тренеры, QC-команда, мониторинг, расширения для браузера</strong>, многоуровневые экзамены.</p><div class="impact">ПРИНЦИП: «Я предпочту быть бедным, чем навредить кому-то»</div></div>
+</div></div>
+
+<!-- PARALLEL PROCESSING -->
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">🧠</div><div class="thinking-meta"><div class="thinking-title"><span class="l en">I Run 10 Things Simultaneously</span><span class="l ru">Я веду 10 задач одновременно</span></div><div class="thinking-sub"><span class="l en">PARALLEL PROCESSING · IM SOLUTIONS</span><span class="l ru">ПАРАЛЛЕЛЬНАЯ ОБРАБОТКА · IM SOLUTIONS</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">THE STORY</span><span class="l ru">ИСТОРИЯ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><div class="story-label">THE PROOF</div><p><strong>4 simultaneous calls</strong> — only one capable. Clients requested by name. Self-taught hosting at night. Joomla — <strong>sites in 5–7 days vs 1 month</strong>. 10 parallel projects.</p><p>After leaving, senior dev (paid <strong>7–8× more</strong>) couldn't complete a single project.</p><div class="impact">AFTERMATH: Two companies needed 4+ people to replace me</div></div>
+<div class="lb ru"><div class="story-label">ДОКАЗАТЕЛЬСТВО</div><p><strong>4 звонка одновременно</strong> — единственный в команде. Клиенты просили по имени. Ночью изучал хостинг. Joomla — <strong>сайты за 5–7 дней вместо 1 месяца</strong>. 10 проектов параллельно.</p><p>После ухода старший разработчик (зарплата <strong>в 7–8 раз выше</strong>) не завершил ни один проект.</p><div class="impact">РЕЗУЛЬТАТ: Двум компаниям потребовалось 4+ человек на замену</div></div>
+</div></div>
+
+<!-- 02 PROJECTS -->
+<div class="section-header animate-in"><span class="num">02</span><h2><span class="l en">What I'm Building</span><span class="l ru">Мои проекты</span></h2><div class="line"></div></div>
+<div class="projects-grid animate-in">
+<div class="project-card"><h3>CommutePilot</h3><span class="badge"><span class="l en">NOVEL CONCEPTS · ACTIVE</span><span class="l ru">УНИКАЛЬНЫЕ КОНЦЕПЦИИ · АКТИВЕН</span></span><p><span class="l en">Commute autopilot. 7-signal sensor fusion works underground. Dynamic delivery to predicted locations. Invisible transit mapping. No competitor has this.</span><span class="l ru">Автопилот для поездок. Сенсорный будильник работает под землёй. Динамическая доставка. Картирование неофициального транспорта. Аналогов нет.</span></p></div>
+<div class="project-card"><h3>OEM Activation System</h3><span class="badge"><span class="l en">LIVE ON GITHUB</span><span class="l ru">НА GITHUB</span></span><p><span class="l en">Windows license management. MySQL + PHP REST API + PowerShell. Bcrypt, audit logging, sessions. Built with Claude Code.</span><span class="l ru">Управление лицензиями Windows. MySQL + PHP REST API + PowerShell. Bcrypt, логирование, сессии. Создано с Claude Code.</span></p></div>
 </div>
 
-<div class="section-header"><span class="num">02</span><h2>Core Competencies</h2><div class="line"></div></div>
-<div class="skills-grid">
-  <div class="skill-block"><h3>Product & Strategy</h3><ul><li>Product architecture & design</li><li>Systems thinking & optimization</li><li>Stakeholder ecosystem design</li><li>Market analysis & monetization</li><li>AI-powered dev (Claude Code)</li></ul></div>
-  <div class="skill-block"><h3>Technical</h3><ul><li>Server admin (Windows/Linux)</li><li>cPanel, WHM, Plesk, IIS</li><li>PHP, MySQL, CMS, web systems</li><li>Photoshop, CorelDraw, 3D</li><li>Docker, MCP, Git/GitHub</li><li>Learns any tool on demand</li></ul></div>
-  <div class="skill-block"><h3>Operations</h3><ul><li>Multi-project parallel mgmt</li><li>International procurement</li><li>Team building & training</li><li>Cost analysis & financials</li><li>QC & process design</li></ul></div>
+<!-- 03 SKILLS -->
+<div class="section-header animate-in"><span class="num">03</span><h2><span class="l en">Core Competencies</span><span class="l ru">Ключевые компетенции</span></h2><div class="line"></div></div>
+<div class="skills-grid animate-in">
+<div class="skill-block"><h3><span class="l en">Product</span><span class="l ru">Продукт</span></h3><ul><li><span class="l en">Product architecture</span><span class="l ru">Продуктовая архитектура</span></li><li><span class="l en">Systems thinking</span><span class="l ru">Системное мышление</span></li><li><span class="l en">Stakeholder ecosystems</span><span class="l ru">Экосистемы стейкхолдеров</span></li><li><span class="l en">Market analysis</span><span class="l ru">Анализ рынка</span></li><li><span class="l en">AI-powered dev</span><span class="l ru">ИИ-разработка</span></li></ul></div>
+<div class="skill-block"><h3><span class="l en">Technical</span><span class="l ru">Техническое</span></h3><ul><li>Windows & Linux</li><li>cPanel, WHM, Plesk, IIS</li><li>PHP, MySQL, CMS</li><li>Photoshop, CorelDraw, 3D</li><li>Docker, MCP, Git</li><li><span class="l en">Adapts to any system</span><span class="l ru">Адаптация к любой системе</span></li></ul></div>
+<div class="skill-block"><h3><span class="l en">Operations</span><span class="l ru">Операции</span></h3><ul><li><span class="l en">Parallel project mgmt</span><span class="l ru">Параллельное управление</span></li><li><span class="l en">International procurement</span><span class="l ru">Международные закупки</span></li><li><span class="l en">Team building</span><span class="l ru">Построение команд</span></li><li><span class="l en">Cost analysis</span><span class="l ru">Анализ затрат</span></li><li><span class="l en">QC & process design</span><span class="l ru">Контроль качества</span></li></ul></div>
 </div>
 
-<div class="section-header"><span class="num">03</span><h2>Experience</h2><div class="line"></div></div>
+<!-- 04 EXPERIENCE -->
+<div class="section-header animate-in"><span class="num">04</span><h2><span class="l en">Experience</span><span class="l ru">Опыт работы</span></h2><div class="line"></div></div>
+<div class="timeline">
 
-<div class="job"><div class="job-header"><span class="job-title">Product & Systems Specialist</span><span class="job-date">2025 — PRESENT</span></div><div class="job-company">#1 PC Brand on Wildberries.ru (2025) — PC Assembly & E-commerce · Moscow</div><ul>
-  <li>Optimized software deployment for <span class="highlight">Russia's top-selling PC brand</span>, delivering fully configured ready-to-use systems</li>
-  <li>Built OEM Activation System v2.0 — license management platform (MySQL + PHP API + PowerShell)</li>
-  <li>Developed price monitoring tool (Google Apps Script, v8.5) across 40+ brands</li>
-  <li>Repurposed osTicket as order fulfillment tracker with custom mobile UI</li>
-</ul></div>
+<div class="job animate-in"><div class="job-header"><span class="job-title"><span class="l en">Product & Systems Specialist</span><span class="l ru">Специалист по продуктам и системам</span></span><span class="job-date">2025 — <span class="l en">PRESENT</span><span class="l ru">Н.В.</span></span></div><div class="job-company"><span class="l en">#1 PC Brand on Wildberries.ru (2025) · Moscow</span><span class="l ru">Бренд ПК #1 на Wildberries.ru (2025) · Москва</span></div>
+<ul><li><span class="l en">Optimized software deployment for <span class="highlight">Russia's #1 PC brand</span>, transforming assembled hardware into fully configured systems</span><span class="l ru">Оптимизация ПО для <span class="highlight">лидера продаж ПК в России</span>, превращение собранного оборудования в полностью настроенные системы</span></li></ul>
+<button class="job-more no-print" onclick="toggleJob(this)"><span class="l en">MORE DETAILS</span><span class="l ru">ПОДРОБНЕЕ</span> <span class="arrow">▾</span></button>
+<div class="job-details"><ul>
+<li><span class="l en">Built OEM Activation System — complete license management platform (MySQL + PHP REST API + PowerShell) with bcrypt security, audit logging, and session management</span><span class="l ru">Создал OEM Activation System — платформу управления лицензиями (MySQL + PHP REST API + PowerShell) с bcrypt, аудитом и управлением сессиями</span></li>
+<li><span class="l en">Developed price monitoring tool (Google Apps Script, v8.5) tracking 40+ hardware brands with timeout protection and robust part number extraction</span><span class="l ru">Разработал инструмент мониторинга цен (Google Apps Script, v8.5) для 40+ брендов с защитой от таймаутов</span></li>
+<li><span class="l en">Repurposed an IT support ticketing system as a complete order fulfillment tracker with custom mobile UI — saw that tracking support requests and tracking orders are the same workflow</span><span class="l ru">Адаптировал IT-систему поддержки как трекер заказов с мобильным интерфейсом — увидел, что отслеживание заявок и заказов — один рабочий процесс</span></li>
+<li><span class="l en">Created Windows deployment workflows using NTLite golden images with driver integration for Intel RST/VMD environments</span><span class="l ru">Создал процессы развёртывания Windows с использованием NTLite golden images с интеграцией драйверов Intel RST/VMD</span></li>
+</ul></div></div>
 
-<div class="job"><div class="job-header"><span class="job-title">AI Training Operations Manager</span><span class="job-date">2017 — 2024</span></div><div class="job-company">Appen / TELUS International · Remote</div><ul>
-  <li>Built complete AI training operation: writers, trainers, QC team, real-time monitoring via virtual desktops</li>
-  <li>Custom browser extensions and QC software for <span class="highlight">Google, Apple, Microsoft, Amazon</span></li>
-  <li>Built <span class="highlight">self-learning QA system in Excel</span> for Arabic transcription — 99% accuracy, #1 productivity</li>
-  <li>Identified and reported systemic outsourcing fraud destroying AI training quality</li>
-</ul></div>
+<div class="job animate-in"><div class="job-header"><span class="job-title"><span class="l en">AI Training Operations Manager</span><span class="l ru">Менеджер операций по обучению ИИ</span></span><span class="job-date">2017 — 2024</span></div><div class="job-company">Appen / TELUS International · <span class="l en">Remote</span><span class="l ru">Удалённо</span></div>
+<ul><li><span class="l en">Built and managed complete AI training operation for <span class="highlight">Google, Apple, Microsoft, Amazon</span></span><span class="l ru">Создал и управлял операцией обучения ИИ для <span class="highlight">Google, Apple, Microsoft, Amazon</span></span></li></ul>
+<button class="job-more no-print" onclick="toggleJob(this)"><span class="l en">MORE DETAILS</span><span class="l ru">ПОДРОБНЕЕ</span> <span class="arrow">▾</span></button>
+<div class="job-details"><ul>
+<li><span class="l en">Structured operation with writers, trainers, QC team, and real-time remote monitoring via virtual desktops</span><span class="l ru">Структурированная операция: авторы, тренеры, QC-команда, мониторинг через виртуальные рабочие столы</span></li>
+<li><span class="l en">Developed custom browser extensions and quality control software to ensure training data accuracy</span><span class="l ru">Разработал расширения для браузера и ПО контроля качества данных обучения</span></li>
+<li><span class="l en">Built self-learning QA system in Excel for Arabic transcription — fed error patterns, auto-prevented repeats. Achieved 99% accuracy, #1 productivity</span><span class="l ru">Создал самообучающуюся QA-систему в Excel для арабской транскрипции — 99% точность, #1 по продуктивности</span></li>
+<li><span class="l en">Designed intensive onboarding program with multi-stage exams achieving quality above industry standard</span><span class="l ru">Разработал интенсивную программу обучения с многоуровневыми экзаменами</span></li>
+<li><span class="l en">Identified and reported systemic outsourcing fraud — Europeans registering at $18/hr, outsourcing to developing countries at $4/hr — destroying AI training quality industry-wide</span><span class="l ru">Выявил и сообщил о системном мошенничестве — европейцы регистрировались по $18/час, отдавали работу за $4/час — уничтожая качество обучения ИИ</span></li>
+</ul></div></div>
 
-<div class="job"><div class="job-header"><span class="job-title">Operations Manager & IT Director</span><span class="job-date">2011 — 2019</span></div><div class="job-company">TMT Electrical Contracting · Cairo (serving American University in Egypt)</div><ul>
-  <li>Managed <span class="highlight">all operational, administrative, and IT functions</span> as sole IT person</li>
-  <li>Invented project-level labor cost tracking in Excel — owner declared it impossible</li>
-  <li>First vendor audit recovered enough to cover Ayoub's salary. Managed million-dollar China imports remotely</li>
-  <li>Found smart home alternative at <span class="highlight">70–80% cost reduction</span> with expanded functionality</li>
-  <li>Upon departure: <span class="highlight">4 replacements needed</span> (1 engineer + 3 staff)</li>
-</ul></div>
+<div class="job animate-in"><div class="job-header"><span class="job-title"><span class="l en">Operations Manager & IT Director</span><span class="l ru">Операционный менеджер и IT-директор</span></span><span class="job-date">2011 — 2019</span></div><div class="job-company">TMT Electrical Contracting · <span class="l en">Cairo (serving American University in Egypt)</span><span class="l ru">Каир (обслуживание Американского Университета в Египте)</span></div>
+<ul><li><span class="l en">Sole IT person managing <span class="highlight">all operational, administrative, and IT functions</span> for 8 years</span><span class="l ru">Единственный IT-специалист — <span class="highlight">все операционные, административные и IT функции</span> в течение 8 лет</span></li></ul>
+<button class="job-more no-print" onclick="toggleJob(this)"><span class="l en">MORE DETAILS</span><span class="l ru">ПОДРОБНЕЕ</span> <span class="arrow">▾</span></button>
+<div class="job-details"><ul>
+<li><span class="l en">Invented project-level labor cost tracking system in Excel — distributed worker hours across concurrent projects. Owner declared this impossible to calculate</span><span class="l ru">Изобрёл систему учёта трудозатрат по проектам в Excel — распределение часов между параллельными проектами. Владелец считал это невозможным</span></li>
+<li><span class="l en">First vendor audit recovered significant overpayments — owner stated Ayoub's salary was paid by recovered funds alone</span><span class="l ru">Первый аудит поставщиков выявил значительные переплаты — владелец заявил, что зарплата Айюба окупилась только возвращёнными средствами</span></li>
+<li><span class="l en">Managed million-dollar international procurement from Chinese vendors entirely remotely — no travel, handled disputes and quality replacement</span><span class="l ru">Управлял международными закупками на миллионы долларов из Китая полностью удалённо — споры, замена, контроль качества</span></li>
+<li><span class="l en">Found smart home alternative (IR controller) at 70–80% cost reduction vs specified product, with expanded functionality</span><span class="l ru">Нашёл альтернативу умного дома (ИК-контроллер) на 70–80% дешевле с расширенным функционалом</span></li>
+<li><span class="l en">Built company website, managed government insurance bureaucracy, handled contractor classification upgrade</span><span class="l ru">Создал сайт компании, управлял страхованием, повышением классификации подрядчика</span></li>
+<li><span class="l en">Upon departure: company required <span class="highlight">4 replacements</span> (1 engineer + 3 staff) to cover his responsibilities</span><span class="l ru">При уходе: компании потребовалось <span class="highlight">4 замены</span> (1 инженер + 3 сотрудника)</span></li>
+</ul></div></div>
 
-<div class="job"><div class="job-header"><span class="job-title">Co-Founder & Managing Director</span><span class="job-date">2009 — 2011</span></div><div class="job-company">Innovation Egypt LLC · Cairo</div><ul>
-  <li>Sole full-time operator of 10-partner IT company. Microsoft, HP, Dell, Kaspersky partnerships</li>
-  <li>Closed due to 2011 Egyptian Revolution</li>
-</ul></div>
+<div class="job animate-in"><div class="job-header"><span class="job-title"><span class="l en">Co-Founder & Managing Director</span><span class="l ru">Сооснователь и управляющий директор</span></span><span class="job-date">2009 — 2011</span></div><div class="job-company">Innovation Egypt LLC · <span class="l en">Cairo</span><span class="l ru">Каир</span></div>
+<ul><li><span class="l en">Sole full-time operator of 10-partner IT services company</span><span class="l ru">Единственный штатный оператор IT-компании с 10 партнёрами</span></li></ul>
+<button class="job-more no-print" onclick="toggleJob(this)"><span class="l en">MORE DETAILS</span><span class="l ru">ПОДРОБНЕЕ</span> <span class="arrow">▾</span></button>
+<div class="job-details"><ul>
+<li><span class="l en">Built company website, secured partnerships with Microsoft, HP, Dell, Kaspersky — passed certification exams personally</span><span class="l ru">Создал сайт, получил партнёрства Microsoft, HP, Dell, Kaspersky — сдал сертификационные экзамены лично</span></li>
+<li><span class="l en">Hired and managed marketing team. Legal representative of the company</span><span class="l ru">Нанял и управлял маркетинговой командой. Юридический представитель компании</span></li>
+<li><span class="l en">Company closed due to 2011 Egyptian Revolution market collapse</span><span class="l ru">Компания закрылась из-за обвала рынка после Революции 2011 года</span></li>
+</ul></div></div>
 
-<div class="job"><div class="job-header"><span class="job-title">Tech Support → Server Admin → Web Developer</span><span class="job-date">2007 — 2009</span></div><div class="job-company">IM Solutions · Cairo</div><ul>
-  <li><span class="highlight">4 simultaneous calls</span> — only team member capable. Clients requested by name</li>
-  <li>Self-taught Joomla: sites in <span class="highlight">5–7 days vs 1 month</span>. 10 parallel projects solo</li>
-  <li>After resignation, senior R&D manager (7–8× salary) couldn't complete a single project</li>
-</ul></div>
+<div class="job animate-in"><div class="job-header"><span class="job-title"><span class="l en">Support → Server Admin → Web Developer</span><span class="l ru">Поддержка → Сисадмин → Веб-разработчик</span></span><span class="job-date">2007 — 2009</span></div><div class="job-company">IM Solutions · <span class="l en">Cairo</span><span class="l ru">Каир</span></div>
+<ul><li><span class="l en">Rapid self-promotion through 3 roles — the only team member handling <span class="highlight">4 simultaneous calls</span></span><span class="l ru">Быстрый рост через 3 роли — единственный в команде, обрабатывавший <span class="highlight">4 звонка одновременно</span></span></li></ul>
+<button class="job-more no-print" onclick="toggleJob(this)"><span class="l en">MORE DETAILS</span><span class="l ru">ПОДРОБНЕЕ</span> <span class="arrow">▾</span></button>
+<div class="job-details"><ul>
+<li><span class="l en">Clients requested him by name. Self-promoted to hosting support by solving problems at night — management discovered through client feedback</span><span class="l ru">Клиенты просили его по имени. Перешёл на поддержку хостинга, решая проблемы ночью — руководство узнало через отзывы клиентов</span></li>
+<li><span class="l en">Advanced to server administrator (Windows + Linux). Researched, proposed, and implemented billing/hosting management platform</span><span class="l ru">Стал администратором серверов (Windows + Linux). Исследовал, предложил и внедрил платформу биллинга</span></li>
+<li><span class="l en">Self-taught CMS — delivered websites in 5–7 days vs team average of 1 month. Managed 10 parallel projects solo</span><span class="l ru">Самоучка CMS — сайты за 5–7 дней vs 1 месяц у команды. 10 параллельных проектов</span></li>
+<li><span class="l en">After resignation, senior R&D manager (paid 7–8× more) couldn't complete a single project and left the company</span><span class="l ru">После увольнения старший R&D менеджер (зарплата в 7–8 раз выше) не завершил ни один проект и покинул компанию</span></li>
+</ul></div></div>
 
-<div class="job"><div class="job-header"><span class="job-title">Earlier Career</span><span class="job-date">2004 — 2007</span></div><div class="job-company">LINKdotNET · Biznas LLC · Cairo & Zagazig</div><ul>
-  <li>LINKdotNET: ADSL field tech — improvised solutions senior engineers couldn't conceive</li>
-  <li>Biznas: Regional Marketing Team Leader — product expert consulted by entire team</li>
-</ul></div>
+<div class="job animate-in"><div class="job-header"><span class="job-title"><span class="l en">Earlier Career</span><span class="l ru">Ранний опыт</span></span><span class="job-date">2004 — 2007</span></div><div class="job-company">LINKdotNET · Biznas · <span class="l en">Cairo & Zagazig</span><span class="l ru">Каир и Загазиг</span></div>
+<ul><li><span class="l en">ADSL field technician, marketing team leader, PC repair startup co-founder</span><span class="l ru">Полевой техник ADSL, лидер маркетинга, сооснователь ремонта ПК</span></li></ul>
+<button class="job-more no-print" onclick="toggleJob(this)"><span class="l en">MORE DETAILS</span><span class="l ru">ПОДРОБНЕЕ</span> <span class="arrow">▾</span></button>
+<div class="job-details"><ul>
+<li><span class="l en">LINKdotNET: Improvised infrastructure solutions on ADSL opening day that senior technicians said they'd never have thought of</span><span class="l ru">LINKdotNET: Импровизированные решения при открытии интернет-кафе, которые старшие техники не могли придумать</span></li>
+<li><span class="l en">Biznas: Regional Marketing Team Leader — became product expert consulted by entire team and clients</span><span class="l ru">Biznas: Региональный лидер маркетинга — стал экспертом по продукту для всей команды и клиентов</span></li>
+<li><span class="l en">Co-founded door-to-door PC repair service — designed marketing, acquired clients, delivered service</span><span class="l ru">Сооснователь сервиса ремонта ПК на дому — маркетинг, привлечение клиентов, обслуживание</span></li>
+</ul></div></div>
 
-<div class="section-header"><span class="num">04</span><h2>Notable Achievements</h2><div class="line"></div></div>
-<div class="achievement"><span class="icon">◆</span><p>Presented <strong>14-year digital payment plan</strong> to Egypt's Central Bank (2006) — predating Bitcoin and all CBDCs</p></div>
-<div class="achievement"><span class="icon">◆</span><p>Designed <strong>CommutePilot</strong>: 124-feature platform with concepts that <strong>exist in no current product</strong></p></div>
-<div class="achievement"><span class="icon">◆</span><p>At every company: work of multiple employees. <strong>Two companies needed 4+ replacements</strong></p></div>
-
-<div class="section-header"><span class="num">05</span><h2>Education</h2><div class="line"></div></div>
-<div class="edu-row"><strong>Bachelor of Commerce — Accounting</strong> · Zagazig University (2003–2007)</div>
-<div class="edu-row"><strong>Military Secondary School</strong> <span class="tag">90%</span></div>
-<div class="edu-row"><strong>CCNSP</strong> · YAT Corp &nbsp;|&nbsp; <strong>English Level 8–9</strong> <span class="tag">GRADE A</span> · AUC &nbsp;|&nbsp; <strong>Microsoft Certifications</strong></div>
-
-<div class="section-header"><span class="num">06</span><h2>Languages</h2><div class="line"></div></div>
-<div class="languages"><strong>Arabic</strong> Native · <strong>English</strong> Bilingual · <strong>French</strong> Limited · <strong>Russian</strong> Basic</div>
-
-<div class="section-header"><span class="num">07</span><h2>Innovation Vault</h2><div class="line"></div></div>
-<div class="vault-item"><span class="vault-num">#1</span><span class="vault-name">CommutePilot</span><span class="vault-desc">— 124+ features (active)</span></div>
-<div class="vault-item"><span class="vault-num">#2</span><span class="vault-name">KidCart</span><span class="vault-desc">— Kids marketplace + divorce verification</span></div>
-<div class="vault-item"><span class="vault-num">#3</span><span class="vault-name">Smart Lockers</span><span class="vault-desc">— Thermal double-door pickup</span></div>
-<div class="vault-item"><span class="vault-num">#4</span><span class="vault-name">Digital Currency</span><span class="vault-desc">— 14-year plan (NBE, 2006)</span></div>
-<div class="vault-item"><span class="vault-num">#5</span><span class="vault-name">Metamaterial Cloak</span><span class="vault-desc">— Light-bending (2006)</span></div>
-<div class="vault-item"><span class="vault-num">#6</span><span class="vault-name">Solar Laser</span><span class="vault-desc">— Sunlight conversion (2006)</span></div>
-
-<div class="footer-quote"><p>"I design systems that don't exist yet. Then I find ways to build them."</p></div>
 </div>
 
-<button class="print-btn no-print" onclick="window.print()">⎙ PRINT / SAVE PDF</button>
+<!-- 05 EDUCATION -->
+<div class="section-header animate-in"><span class="num">05</span><h2><span class="l en">Education</span><span class="l ru">Образование</span></h2><div class="line"></div></div>
+<div class="animate-in"><div class="edu-row"><strong><span class="l en">B.Com Accounting</span><span class="l ru">Бакалавр коммерции</span></strong> · <span class="l en">Zagazig University</span><span class="l ru">Загазигский университет</span> (2003–07) · <strong><span class="l en">Military School</span><span class="l ru">Военная школа</span></strong> <span class="tag">90%</span></div>
+<div class="edu-row"><strong>CCNSP</strong> · <strong><span class="l en">English 8–9</span><span class="l ru">Английский 8–9</span></strong> <span class="tag">A</span> AUC · <strong>Microsoft Certs</strong></div></div>
+
+<!-- 06 LANGUAGES -->
+<div class="section-header animate-in"><span class="num">06</span><h2><span class="l en">Languages</span><span class="l ru">Языки</span></h2><div class="line"></div></div>
+<div class="languages animate-in"><strong><span class="l en">Arabic</span><span class="l ru">Арабский</span></strong> <span class="l en">Native</span><span class="l ru">Родной</span> · <strong><span class="l en">English</span><span class="l ru">Английский</span></strong> <span class="l en">Bilingual</span><span class="l ru">Свободный</span> · <strong><span class="l en">French</span><span class="l ru">Французский</span></strong> <span class="l en">Limited</span><span class="l ru">Базовый</span> · <strong><span class="l en">Russian</span><span class="l ru">Русский</span></strong> <span class="l en">Basic</span><span class="l ru">Базовый</span></div>
+
+<!-- 07 VAULT -->
+<div class="section-header animate-in"><span class="num">07</span><h2><span class="l en">Innovation Vault</span><span class="l ru">Портфолио инноваций</span></h2><div class="line"></div></div>
+
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">🚀</div><div class="thinking-meta"><div class="thinking-title">CommutePilot</div><div class="thinking-sub"><span class="vault-active"><span class="l en">ACTIVE</span><span class="l ru">АКТИВЕН</span></span> <span class="l en">MOBILITY PLATFORM</span><span class="l ru">ПЛАТФОРМА МОБИЛЬНОСТИ</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">DETAILS</span><span class="l ru">ДЕТАЛИ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><p>A commute autopilot app. You set your multi-leg journey once — train, bus, taxi — and the app runs it every day. <strong>Sleep on transit</strong> and wake up at your stop via a 7-signal sensor fusion alarm that works underground where GPS fails. Your coffee is pre-ordered and timed to your arrival. Your taxi is pre-booked. Groceries are collected on your route home.</p><p>Novel concepts include: <strong>dynamic delivery to your predicted future location</strong>, invisible transit mapping from phone sensor data, universal road surface quality mapping, and a delay cascade engine that recalculates your entire chain the moment anything changes.</p><div class="impact">No existing app combines any of these capabilities</div></div>
+<div class="lb ru"><p>Приложение-автопилот для поездок. Задаёте маршрут один раз — поезд, автобус, такси — и приложение ведёт вас каждый день. <strong>Спите в транспорте</strong> и просыпаетесь на остановке благодаря будильнику с 7 сигналами, работающему под землёй. Кофе заказан и приурочен к прибытию. Такси забронировано. Продукты собраны по пути.</p><p>Уникальные концепции: <strong>доставка на прогнозируемую локацию</strong>, невидимое картирование транспорта, картирование качества дорог, каскадный пересчёт при задержках.</p><div class="impact">Ни одно приложение не объединяет эти возможности</div></div>
+</div></div>
+
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">🛒</div><div class="thinking-meta"><div class="thinking-title">KidCart</div><div class="thinking-sub"><span class="l en">CHILDREN'S MARKETPLACE</span><span class="l ru">ДЕТСКИЙ МАРКЕТПЛЕЙС</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">DETAILS</span><span class="l ru">ДЕТАЛИ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><p>A marketplace designed for children's products — but with a layer no competitor has: <strong>divorce spending verification</strong>. When parents are separated, one parent can verify that money sent for the child is actually spent on the child. Transparent receipts, category tracking, approval workflows.</p><p>Also includes <strong>age-appropriate product filtering</strong>, parental approval for purchases, and educational content integration.</p><div class="impact">Addresses a real pain point for millions of divorced families worldwide</div></div>
+<div class="lb ru"><p>Маркетплейс для детских товаров с уникальным слоем: <strong>верификация расходов при разводе</strong>. Когда родители разведены, один может проверить, что деньги на ребёнка реально потрачены на ребёнка. Прозрачные чеки, отслеживание категорий, процессы одобрения.</p><p>Также: <strong>возрастная фильтрация</strong>, родительское одобрение покупок, образовательный контент.</p><div class="impact">Решает реальную проблему миллионов разведённых семей</div></div>
+</div></div>
+
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">📦</div><div class="thinking-meta"><div class="thinking-title">Smart Pickup Lockers</div><div class="thinking-sub"><span class="l en">RESTAURANT INFRASTRUCTURE</span><span class="l ru">ИНФРАСТРУКТУРА РЕСТОРАНОВ</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">DETAILS</span><span class="l ru">ДЕТАЛИ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><p>Double-door lockers for restaurants: kitchen loads from the back, customer picks up from the front. <strong>Temperature-controlled</strong> — heated for hot food, cooled for cold items. No human interaction needed. No waiting in line.</p><p>Designed for the gap between restaurant kitchen and delivery/pickup. Reduces wait times, eliminates order mix-ups, works 24/7.</p><p><em>Bonus feature #126 — my daughter's idea: a vibrating seat alarm for when your order is ready.</em></p><div class="impact">Transforms restaurant pickup into a vending machine experience</div></div>
+<div class="lb ru"><p>Двухдверные шкафчики: кухня загружает сзади, клиент забирает спереди. <strong>С контролем температуры</strong> — подогрев для горячего, охлаждение для холодного. Без контакта с персоналом. Без очередей.</p><p>Для промежутка между кухней и выдачей/доставкой. Уменьшает ожидание, исключает путаницу заказов, работает 24/7.</p><p><em>Бонус — идея моей дочери: вибрирующее сиденье, когда заказ готов.</em></p><div class="impact">Превращает выдачу в ресторане в опыт автомата</div></div>
+</div></div>
+
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">💰</div><div class="thinking-meta"><div class="thinking-title"><span class="l en">National Digital Currency</span><span class="l ru">Национальная цифровая валюта</span></div><div class="thinking-sub"><span class="l en">PRESENTED TO CENTRAL BANK · 2006</span><span class="l ru">ПРЕДСТАВЛЕНО В ЦБ · 2006</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">DETAILS</span><span class="l ru">ДЕТАЛИ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><p>A <strong>14-year phased plan</strong> to transition Egypt from cash to digital payments. Included banking infrastructure changes, merchant adoption strategy, and citizen onboarding — presented to a representative from the National Bank of Egypt and Central Bank in 2006.</p><p>This was <strong>2 years before Bitcoin</strong>, a decade before Apple Pay, and 15+ years before any government launched a CBDC program. The concept mapped almost exactly onto what the world is building today.</p><div class="impact">Conceived 2006 · Bitcoin launched 2008 · CBDCs began ~2020</div></div>
+<div class="lb ru"><p><strong>14-летний план</strong> перехода Египта от наличных к цифровым платежам. Включал изменения банковской инфраструктуры, стратегию внедрения для продавцов и граждан — представлен в Национальном Банке Египта в 2006.</p><p>Это было <strong>за 2 года до Bitcoin</strong>, за десятилетие до Apple Pay и за 15+ лет до первых CBDC. Концепция почти точно совпала с тем, что мир строит сегодня.</p><div class="impact">Задумано 2006 · Bitcoin 2008 · CBDC ~2020</div></div>
+</div></div>
+
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">👻</div><div class="thinking-meta"><div class="thinking-title"><span class="l en">Metamaterial Cloaking</span><span class="l ru">Метаматериальная маскировка</span></div><div class="thinking-sub"><span class="l en">INDEPENDENTLY CONCEIVED · 2006</span><span class="l ru">НЕЗАВИСИМАЯ КОНЦЕПЦИЯ · 2006</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">DETAILS</span><span class="l ru">ДЕТАЛИ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><p>Conceived the idea that <strong>materials could bend light around an object</strong>, making it invisible. Worked out the basic principle independently as a student in Egypt.</p><p>Months later, <strong>Duke University demonstrated the world's first metamaterial cloak</strong> in their laboratory — validating the exact same concept.</p><div class="impact">Independent conception validated by Duke University in the same year</div></div>
+<div class="lb ru"><p>Придумал идею, что <strong>материалы могут огибать свет вокруг объекта</strong>, делая его невидимым. Разработал базовый принцип самостоятельно как студент в Египте.</p><p>Через месяцы <strong>Duke University продемонстрировал первый метаматериальный плащ</strong> — подтвердив ту же концепцию.</p><div class="impact">Независимая концепция подтверждена Duke University в том же году</div></div>
+</div></div>
+
+<div class="thinking-card animate-in"><div class="thinking-header"><div class="thinking-icon">☀️</div><div class="thinking-meta"><div class="thinking-title"><span class="l en">Solar-Pumped Laser</span><span class="l ru">Солнечный лазер</span></div><div class="thinking-sub"><span class="l en">INDEPENDENTLY CONCEIVED · 2006</span><span class="l ru">НЕЗАВИСИМАЯ КОНЦЕПЦИЯ · 2006</span></div></div><button class="story-expand" onclick="toggleStory(this)"><span class="l en">DETAILS</span><span class="l ru">ДЕТАЛИ</span> <span class="arrow">▾</span></button></div>
+<div class="story-body">
+<div class="lb en"><p>Conceived a system to <strong>concentrate sunlight through lenses and fiber optics</strong> to pump a laser medium — converting raw sunlight into coherent laser energy without electricity.</p><p>This is now a <strong>real technology in active development</strong> by research labs worldwide for applications in space propulsion, manufacturing, and energy transmission.</p><div class="impact">Now an active research field in labs worldwide</div></div>
+<div class="lb ru"><p>Придумал систему <strong>концентрации солнечного света через линзы и оптоволокно</strong> для накачки лазерной среды — преобразование солнечного света в когерентную лазерную энергию без электричества.</p><p>Сейчас это <strong>реальная технология в активной разработке</strong> лабораториями по всему миру для космической тяги, производства и передачи энергии.</p><div class="impact">Сейчас — активная область исследований в лабораториях мира</div></div>
+</div></div>
+
+<div class="footer-quote animate-in"><p>"<span class="l en">I design systems that don't exist yet. Then I find ways to build them.</span><span class="l ru">Я проектирую системы, которых ещё не существует. А потом нахожу способ их построить.</span>"</p></div>
+<div class="footer-meta">AYOUB MOHAMED SAMIR · <span class="l en">MOSCOW</span><span class="l ru">МОСКВА</span> · 2026</div>
+</div>
+
+<script>
+function toggleTheme(){const h=document.documentElement,b=document.getElementById('themeBtn');if(h.dataset.theme==='dark'){h.dataset.theme='light';b.textContent='☀️'}else{h.dataset.theme='dark';b.textContent='🌙'}initParticles()}
+function toggleLang(){const h=document.documentElement,b=document.getElementById('langBtn');if(h.dataset.lang==='en'){h.dataset.lang='ru';b.textContent='EN'}else{h.dataset.lang='en';b.textContent='RU'}}
+function toggleStory(btn){const c=btn.closest('.thinking-card'),b=c.querySelector('.story-body'),o=b.classList.contains('open');b.classList.toggle('open');btn.classList.toggle('open');const enTxt=o?'THE STORY':'CLOSE';const ruTxt=o?'ИСТОРИЯ':'ЗАКРЫТЬ';btn.innerHTML='<span class="l en">'+enTxt+'</span><span class="l ru">'+ruTxt+'</span> <span class="arrow">▾</span>'}
+function toggleJob(btn){const d=btn.nextElementSibling;const o=d.classList.contains('open');d.classList.toggle('open');btn.classList.toggle('open');const enTxt=o?'MORE DETAILS':'LESS';const ruTxt=o?'ПОДРОБНЕЕ':'СВЕРНУТЬ';btn.innerHTML='<span class="l en">'+enTxt+'</span><span class="l ru">'+ruTxt+'</span> <span class="arrow">▾</span>'}
+function toggleAll(){const btn=document.querySelector('.expand-all'),bs=document.querySelectorAll('.story-body'),ao=[...bs].every(b=>b.classList.contains('open'));bs.forEach(b=>{const c=b.closest('.thinking-card'),e=c.querySelector('.story-expand');if(ao){b.classList.remove('open');e.classList.remove('open');e.innerHTML='<span class="l en">THE STORY</span><span class="l ru">ИСТОРИЯ</span> <span class="arrow">▾</span>'}else{b.classList.add('open');e.classList.add('open');e.innerHTML='<span class="l en">CLOSE</span><span class="l ru">ЗАКРЫТЬ</span> <span class="arrow">▾</span>'}});btn.innerHTML=ao?'<span class="l en">EXPAND ALL</span><span class="l ru">РАСКРЫТЬ ВСЕ</span>':'<span class="l en">COLLAPSE ALL</span><span class="l ru">СВЕРНУТЬ ВСЕ</span>'}
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.target.classList.add('visible')})},{threshold:.08,rootMargin:'0px 0px -40px 0px'});document.querySelectorAll('.animate-in').forEach(el=>obs.observe(el));
+window.addEventListener('scroll',()=>{document.getElementById('scrollTop').style.display=window.scrollY>400?'flex':'none'});
+function initParticles(){const c=document.getElementById('particles'),x=c.getContext('2d');c.width=window.innerWidth;c.height=window.innerHeight;const d=document.documentElement.dataset.theme==='dark',col=d?'212,168,83':'168,125,40';const ps=[];for(let i=0;i<35;i++)ps.push({x:Math.random()*c.width,y:Math.random()*c.height,s:Math.random()*1.8+.5,dx:(Math.random()-.5)*.25,dy:(Math.random()-.5)*.25,o:Math.random()*.35+.1});function f(){x.clearRect(0,0,c.width,c.height);ps.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;x.beginPath();x.arc(p.x,p.y,p.s,0,Math.PI*2);x.fillStyle=`rgba(${col},${p.o})`;x.fill()});ps.forEach((a,i)=>ps.slice(i+1).forEach(b=>{const dx=a.x-b.x,dy=a.y-b.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<130){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle=`rgba(${col},${.06*(1-dist/130)})`;x.lineWidth=.5;x.stroke()}}));requestAnimationFrame(f)}f();window.addEventListener('resize',()=>{c.width=window.innerWidth;c.height=window.innerHeight})}
+initParticles();
+</script>
 </body></html>
