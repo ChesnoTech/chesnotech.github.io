@@ -34,7 +34,7 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 .hero{background:var(--hero-bg);padding:55px 50px 40px;position:relative;overflow:hidden;border-bottom:2px solid var(--gold);z-index:1}
 .hero::before{content:'';position:absolute;top:-60%;right:-20%;width:550px;height:550px;background:radial-gradient(circle,var(--gold-glow) 0%,transparent 70%);pointer-events:none;animation:glowPulse 5s ease-in-out infinite}
 .hero-stats{display:flex;gap:25px;margin-top:18px;flex-wrap:wrap}
-.stat-box{text-align:center}.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold);line-height:1}.stat-num .sym{font-family:'Source Sans 3',sans-serif;font-size:16px;font-weight:700;vertical-align:baseline;position:relative;top:2px}.stat-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-top:3px}
+.stat-box{text-align:center}.stat-num{font-family:'Playfair Display',serif;font-size:28px;font-weight:900;color:var(--gold);line-height:1}.stat-num .sym{font-size:55%;font-weight:700;vertical-align:middle}.stat-label{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-top:3px}
 .name{font-family:'Playfair Display',serif;font-weight:900;font-size:44px;color:var(--white);letter-spacing:1px;line-height:1.1;opacity:0;animation:fadeUp .8s ease forwards .3s}
 .name span{color:var(--gold)}
 .tagline{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin:12px 0 16px;opacity:0;animation:fadeUp .8s ease forwards .5s}
@@ -123,7 +123,7 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 <div class="stat-box"><div class="stat-num">20<span class="sym">+</span></div><div class="stat-label"><span class="l en">Years</span><span class="l ru">Лет</span></div></div>
 <div class="stat-box"><div class="stat-num">10<span class="sym">+</span></div><div class="stat-label"><span class="l en">Parallel projects</span><span class="l ru">Параллельных проектов</span></div></div>
 <div class="stat-box"><div class="stat-num">6</div><div class="stat-label"><span class="l en">Inventions</span><span class="l ru">Изобретений</span></div></div>
-<div class="stat-box"><div class="stat-num">4<span style="font-family:Source Sans 3,sans-serif;font-size:18px;font-weight:600;vertical-align:bottom;line-height:28px">x</span></div><div class="stat-label"><span class="l en">Replaced by</span><span class="l ru">Человек на замену</span></div></div>
+<div class="stat-box"><div class="stat-num">4<span class="sym">×</span></div><div class="stat-label"><span class="l en">Replaced by</span><span class="l ru">Человек на замену</span></div></div>
 <div class="stat-box"><div class="stat-num">0</div><div class="stat-label"><span class="l en">Formal IT training</span><span class="l ru">Формального IT-обучения</span></div></div>
 </div></div>
 
