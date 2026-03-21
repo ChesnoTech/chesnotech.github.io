@@ -1,1 +1,179 @@
-placeholder
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ayoub Mohamed Samir — Resume</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+@page { size: A4; margin: 0; }
+@media print {
+  body { -webkit-print-color-adjust: exact !important; print-color-adjust: exact !important; }
+  .no-print { display: none; }
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0D0D0D; --bg2: #141418; --bg3: #1A1A22;
+  --gold: #D4A853; --gold-dim: #B8923A; --gold-glow: rgba(212,168,83,0.15);
+  --teal: #2EC4B6; --white: #F0EDE6;
+  --gray: #8A8A8A; --gray-light: #ABABAB; --accent: #E76F51;
+}
+body { background: var(--bg); color: var(--white); font-family: 'Source Sans 3', sans-serif; font-size: 13.5px; line-height: 1.55; max-width: 900px; margin: 0 auto; }
+
+.hero { background: linear-gradient(135deg, var(--bg) 0%, var(--bg2) 40%, #14141E 100%); padding: 50px 50px 35px; position: relative; overflow: hidden; border-bottom: 2px solid var(--gold); }
+.hero::before { content: ''; position: absolute; top: -50%; right: -20%; width: 500px; height: 500px; background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%); pointer-events: none; }
+.hero::after { content: 'SYSTEMS THINKER • PRODUCT VISIONARY • FOUNDER'; position: absolute; bottom: 12px; right: 50px; font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 4px; color: var(--gold-dim); opacity: 0.4; }
+.name { font-family: 'Playfair Display', serif; font-weight: 900; font-size: 42px; color: var(--white); letter-spacing: 1px; line-height: 1.1; }
+.name span { color: var(--gold); }
+.tagline { font-family: 'JetBrains Mono', monospace; font-size: 12px; color: var(--gold); letter-spacing: 3px; text-transform: uppercase; margin: 10px 0 15px; }
+.contact-row { display: flex; gap: 25px; flex-wrap: wrap; font-size: 12px; color: var(--gray-light); }
+.contact-row a { color: var(--teal); text-decoration: none; }
+
+.content { padding: 0 50px 40px; }
+.summary { padding: 30px 0; border-bottom: 1px solid rgba(212,168,83,0.15); font-size: 14px; color: var(--gray-light); line-height: 1.65; font-weight: 300; }
+.summary strong { color: var(--white); font-weight: 600; }
+
+.section-header { display: flex; align-items: center; gap: 15px; margin: 32px 0 18px; }
+.section-header .line { flex: 1; height: 1px; background: linear-gradient(90deg, var(--gold-dim) 0%, transparent 100%); }
+.section-header h2 { font-family: 'Playfair Display', serif; font-size: 16px; font-weight: 700; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; white-space: nowrap; }
+.section-header .num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold-dim); opacity: 0.5; }
+
+.projects-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; }
+.project-card { background: var(--bg3); border: 1px solid rgba(212,168,83,0.12); border-radius: 6px; padding: 18px; position: relative; }
+.project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--gold); border-radius: 6px 0 0 6px; }
+.project-card h3 { font-family: 'JetBrains Mono', monospace; font-size: 13px; font-weight: 500; color: var(--teal); margin-bottom: 6px; }
+.project-card p { font-size: 11.5px; color: var(--gray); line-height: 1.5; }
+
+.skills-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.skill-block h3 { font-family: 'JetBrains Mono', monospace; font-size: 10px; font-weight: 500; color: var(--gold); letter-spacing: 2px; text-transform: uppercase; margin-bottom: 8px; padding-bottom: 5px; border-bottom: 1px solid rgba(212,168,83,0.2); }
+.skill-block li { list-style: none; font-size: 11.5px; color: var(--gray-light); padding: 2px 0 2px 12px; position: relative; }
+.skill-block li::before { content: '›'; position: absolute; left: 0; color: var(--gold-dim); font-weight: bold; }
+
+.job { padding: 18px 0; border-bottom: 1px solid rgba(255,255,255,0.04); }
+.job:last-child { border-bottom: none; }
+.job-header { display: flex; justify-content: space-between; align-items: baseline; flex-wrap: wrap; gap: 5px; margin-bottom: 3px; }
+.job-title { font-weight: 700; font-size: 14px; color: var(--white); }
+.job-date { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold-dim); letter-spacing: 1px; }
+.job-company { font-size: 12px; color: var(--teal); margin-bottom: 8px; }
+.job ul { list-style: none; padding: 0; }
+.job li { font-size: 12.5px; color: var(--gray-light); padding: 3px 0 3px 18px; position: relative; line-height: 1.5; }
+.job li::before { content: '▸'; position: absolute; left: 0; color: var(--gold); font-size: 10px; top: 4px; }
+.highlight { color: var(--white); font-weight: 600; }
+
+.achievement { display: flex; gap: 12px; padding: 10px 0; }
+.achievement .icon { font-size: 14px; color: var(--gold); line-height: 1.6; }
+.achievement p { font-size: 12.5px; color: var(--gray-light); line-height: 1.5; }
+.achievement strong { color: var(--white); }
+
+.edu-row { font-size: 12.5px; color: var(--gray-light); padding: 4px 0; }
+.edu-row strong { color: var(--white); font-weight: 600; }
+.edu-row .tag { font-family: 'JetBrains Mono', monospace; font-size: 9px; color: var(--gold); background: rgba(212,168,83,0.1); padding: 2px 6px; border-radius: 3px; margin-left: 5px; }
+.languages { font-size: 12px; color: var(--gray-light); padding: 5px 0; }
+.languages strong { color: var(--white); }
+.vault-item { display: flex; align-items: baseline; gap: 10px; padding: 4px 0; }
+.vault-num { font-family: 'JetBrains Mono', monospace; font-size: 10px; color: var(--gold); min-width: 20px; }
+.vault-name { font-weight: 600; color: var(--white); font-size: 12.5px; }
+.vault-desc { font-size: 11.5px; color: var(--gray); }
+.footer-quote { text-align: center; padding: 30px 0 40px; border-top: 1px solid rgba(212,168,83,0.2); margin-top: 30px; }
+.footer-quote p { font-family: 'Playfair Display', serif; font-size: 15px; font-style: italic; color: var(--gold); }
+.print-btn { position: fixed; bottom: 20px; right: 20px; background: var(--gold); color: var(--bg); border: none; padding: 12px 24px; font-family: 'JetBrains Mono', monospace; font-size: 12px; font-weight: 500; letter-spacing: 1px; cursor: pointer; border-radius: 4px; z-index: 100; }
+.print-btn:hover { background: var(--gold-dim); }
+</style>
+</head>
+<body>
+
+<div class="hero">
+  <div class="name">AYOUB <span>MOHAMED</span> SAMIR</div>
+  <div class="tagline">Product Visionary · Systems Architect · Founder</div>
+  <div class="contact-row">
+    <span>Moscow, Russia</span>
+    <span>Egyptian National</span>
+    <span>7agtyadmin@gmail.com</span>
+    <span><a href="https://github.com/ChesnoTech">github.com/ChesnoTech</a></span>
+  </div>
+</div>
+
+<div class="content">
+<div class="summary">
+  <strong>Twenty years of building what doesn't exist yet.</strong> Self-taught technologist, operations leader, and product architect who consistently replaces teams of 4–10 people as a solo operator. From presenting a <strong>national digital currency plan to Egypt's Central Bank in 2006</strong> — a decade before Bitcoin — to designing a <strong>124-feature mobility platform</strong> today, I see systems others can't imagine and find ways to build them.
+</div>
+
+<div class="section-header"><span class="num">01</span><h2>What I'm Building</h2><div class="line"></div></div>
+<div class="projects-grid">
+  <div class="project-card"><h3>CommutePilot</h3><p>Commute autopilot with 124+ features. 7-signal sensor fusion alarm that works underground. Dynamic delivery to predicted locations. Invisible transit mapping. No competitor has any of this.</p></div>
+  <div class="project-card"><h3>OEM Activation System v2.0</h3><p>Windows license management for PC assembly. MySQL + PHP REST API + PowerShell. Full rewrite from legacy. Built with Claude Code. Live on GitHub.</p></div>
+</div>
+
+<div class="section-header"><span class="num">02</span><h2>Core Competencies</h2><div class="line"></div></div>
+<div class="skills-grid">
+  <div class="skill-block"><h3>Product & Strategy</h3><ul><li>Product architecture & design</li><li>Systems thinking & optimization</li><li>Stakeholder ecosystem design</li><li>Market analysis & monetization</li><li>AI-powered dev (Claude Code)</li></ul></div>
+  <div class="skill-block"><h3>Technical</h3><ul><li>Server admin (Windows/Linux)</li><li>cPanel, WHM, Plesk, IIS</li><li>PHP, MySQL, CMS, web systems</li><li>Photoshop, CorelDraw, 3D</li><li>Docker, MCP, Git/GitHub</li><li>Learns any tool on demand</li></ul></div>
+  <div class="skill-block"><h3>Operations</h3><ul><li>Multi-project parallel mgmt</li><li>International procurement</li><li>Team building & training</li><li>Cost analysis & financials</li><li>QC & process design</li></ul></div>
+</div>
+
+<div class="section-header"><span class="num">03</span><h2>Experience</h2><div class="line"></div></div>
+
+<div class="job"><div class="job-header"><span class="job-title">Product & Systems Specialist</span><span class="job-date">2025 — PRESENT</span></div><div class="job-company">#1 PC Brand on Wildberries.ru (2025) — PC Assembly & E-commerce · Moscow</div><ul>
+  <li>Optimized software deployment for <span class="highlight">Russia's top-selling PC brand</span>, delivering fully configured ready-to-use systems</li>
+  <li>Built OEM Activation System v2.0 — license management platform (MySQL + PHP API + PowerShell)</li>
+  <li>Developed price monitoring tool (Google Apps Script, v8.5) across 40+ brands</li>
+  <li>Repurposed osTicket as order fulfillment tracker with custom mobile UI</li>
+</ul></div>
+
+<div class="job"><div class="job-header"><span class="job-title">AI Training Operations Manager</span><span class="job-date">2017 — 2024</span></div><div class="job-company">Appen / TELUS International · Remote</div><ul>
+  <li>Built complete AI training operation: writers, trainers, QC team, real-time monitoring via virtual desktops</li>
+  <li>Custom browser extensions and QC software for <span class="highlight">Google, Apple, Microsoft, Amazon</span></li>
+  <li>Built <span class="highlight">self-learning QA system in Excel</span> for Arabic transcription — 99% accuracy, #1 productivity</li>
+  <li>Identified and reported systemic outsourcing fraud destroying AI training quality</li>
+</ul></div>
+
+<div class="job"><div class="job-header"><span class="job-title">Operations Manager & IT Director</span><span class="job-date">2011 — 2019</span></div><div class="job-company">TMT Electrical Contracting · Cairo (serving American University in Egypt)</div><ul>
+  <li>Managed <span class="highlight">all operational, administrative, and IT functions</span> as sole IT person</li>
+  <li>Invented project-level labor cost tracking in Excel — owner declared it impossible</li>
+  <li>First vendor audit recovered enough to cover Ayoub's salary. Managed million-dollar China imports remotely</li>
+  <li>Found smart home alternative at <span class="highlight">70–80% cost reduction</span> with expanded functionality</li>
+  <li>Upon departure: <span class="highlight">4 replacements needed</span> (1 engineer + 3 staff)</li>
+</ul></div>
+
+<div class="job"><div class="job-header"><span class="job-title">Co-Founder & Managing Director</span><span class="job-date">2009 — 2011</span></div><div class="job-company">Innovation Egypt LLC · Cairo</div><ul>
+  <li>Sole full-time operator of 10-partner IT company. Microsoft, HP, Dell, Kaspersky partnerships</li>
+  <li>Closed due to 2011 Egyptian Revolution</li>
+</ul></div>
+
+<div class="job"><div class="job-header"><span class="job-title">Tech Support → Server Admin → Web Developer</span><span class="job-date">2007 — 2009</span></div><div class="job-company">IM Solutions · Cairo</div><ul>
+  <li><span class="highlight">4 simultaneous calls</span> — only team member capable. Clients requested by name</li>
+  <li>Self-taught Joomla: sites in <span class="highlight">5–7 days vs 1 month</span>. 10 parallel projects solo</li>
+  <li>After resignation, senior R&D manager (7–8× salary) couldn't complete a single project</li>
+</ul></div>
+
+<div class="job"><div class="job-header"><span class="job-title">Earlier Career</span><span class="job-date">2004 — 2007</span></div><div class="job-company">LINKdotNET · Biznas LLC · Cairo & Zagazig</div><ul>
+  <li>LINKdotNET: ADSL field tech — improvised solutions senior engineers couldn't conceive</li>
+  <li>Biznas: Regional Marketing Team Leader — product expert consulted by entire team</li>
+</ul></div>
+
+<div class="section-header"><span class="num">04</span><h2>Notable Achievements</h2><div class="line"></div></div>
+<div class="achievement"><span class="icon">◆</span><p>Presented <strong>14-year digital payment plan</strong> to Egypt's Central Bank (2006) — predating Bitcoin and all CBDCs</p></div>
+<div class="achievement"><span class="icon">◆</span><p>Designed <strong>CommutePilot</strong>: 124-feature platform with concepts that <strong>exist in no current product</strong></p></div>
+<div class="achievement"><span class="icon">◆</span><p>At every company: work of multiple employees. <strong>Two companies needed 4+ replacements</strong></p></div>
+
+<div class="section-header"><span class="num">05</span><h2>Education</h2><div class="line"></div></div>
+<div class="edu-row"><strong>Bachelor of Commerce — Accounting</strong> · Zagazig University (2003–2007)</div>
+<div class="edu-row"><strong>Military Secondary School</strong> <span class="tag">90%</span></div>
+<div class="edu-row"><strong>CCNSP</strong> · YAT Corp &nbsp;|&nbsp; <strong>English Level 8–9</strong> <span class="tag">GRADE A</span> · AUC &nbsp;|&nbsp; <strong>Microsoft Certifications</strong></div>
+
+<div class="section-header"><span class="num">06</span><h2>Languages</h2><div class="line"></div></div>
+<div class="languages"><strong>Arabic</strong> Native · <strong>English</strong> Bilingual · <strong>French</strong> Limited · <strong>Russian</strong> Basic</div>
+
+<div class="section-header"><span class="num">07</span><h2>Innovation Vault</h2><div class="line"></div></div>
+<div class="vault-item"><span class="vault-num">#1</span><span class="vault-name">CommutePilot</span><span class="vault-desc">— 124+ features (active)</span></div>
+<div class="vault-item"><span class="vault-num">#2</span><span class="vault-name">KidCart</span><span class="vault-desc">— Kids marketplace + divorce verification</span></div>
+<div class="vault-item"><span class="vault-num">#3</span><span class="vault-name">Smart Lockers</span><span class="vault-desc">— Thermal double-door pickup</span></div>
+<div class="vault-item"><span class="vault-num">#4</span><span class="vault-name">Digital Currency</span><span class="vault-desc">— 14-year plan (NBE, 2006)</span></div>
+<div class="vault-item"><span class="vault-num">#5</span><span class="vault-name">Metamaterial Cloak</span><span class="vault-desc">— Light-bending (2006)</span></div>
+<div class="vault-item"><span class="vault-num">#6</span><span class="vault-name">Solar Laser</span><span class="vault-desc">— Sunlight conversion (2006)</span></div>
+
+<div class="footer-quote"><p>"I design systems that don't exist yet. Then I find ways to build them."</p></div>
+</div>
+
+<button class="print-btn no-print" onclick="window.print()">⎙ PRINT / SAVE PDF</button>
+</body></html>
