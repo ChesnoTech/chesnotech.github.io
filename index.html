@@ -401,16 +401,18 @@ buildLangMenu();
   try{
     const r=await fetch('lang/_keys.json');
     const keys=await r.json();
+    // Normalize quotes/apostrophes for matching
+    function norm(s){return s.replace(/[\u2018\u2019\u0060\u00B4]/g,"'").replace(/[\u201C\u201D]/g,'"').replace(/[\u2013\u2014]/g,'-').replace(/\s+/g,' ').trim()}
     const rev={};
-    for(const[k,v]of Object.entries(keys)){if(typeof v==='string'){const c=v.replace(/<[^>]+>/g,'').trim();if(c.length<300)rev[c]=k}}
-    document.querySelectorAll('.l.en').forEach(s=>{const p=s.parentElement;if(!p||p.getAttribute('data-i18n'))return;const t=s.textContent.trim();if(rev[t])p.setAttribute('data-i18n',rev[t])});
+    for(const[k,v]of Object.entries(keys)){if(typeof v==='string'){const c=norm(v.replace(/<[^>]+>/g,''));if(c.length<300)rev[c]=k}}
+    document.querySelectorAll('.l.en').forEach(s=>{const p=s.parentElement;if(!p||p.getAttribute('data-i18n'))return;const t=norm(s.textContent);if(rev[t])p.setAttribute('data-i18n',rev[t])});
     // Match block elements by comparing stripped text content (first 50 chars)
     const blockKeys=Object.entries(keys).filter(([k,v])=>typeof v==='string'&&v.includes('<'));
     document.querySelectorAll('.lb.en').forEach(d=>{
       const p=d.parentElement;if(!p||p.getAttribute('data-i18n-html'))return;
-      const domText=d.textContent.replace(/\s+/g,' ').trim().substring(0,50);
+      const domText=norm(d.textContent).substring(0,50);
       for(const[k,v]of blockKeys){
-        const keyText=v.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim().substring(0,50);
+        const keyText=norm(v.replace(/<[^>]+>/g,'')).substring(0,50);
         if(domText&&keyText&&domText===keyText){p.setAttribute('data-i18n-html',k);break}
       }
     });
