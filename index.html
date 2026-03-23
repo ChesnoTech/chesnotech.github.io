@@ -33,6 +33,13 @@
 [data-lang="zh"]{font-family:'Noto Sans SC','Source Sans 3',sans-serif}
 [data-lang="ja"]{font-family:'Noto Sans JP','Source Sans 3',sans-serif}
 .lang-switcher{position:relative}
+.lang-btn-inner{display:flex;align-items:center;gap:4px;font-size:11px;font-family:'JetBrains Mono',monospace;letter-spacing:1px}
+.lang-btn-inner .globe{font-size:15px;opacity:.8}
+.lang-btn-inner .lang-code{font-weight:600}
+.ctrl-btn.lang-trigger{width:auto;padding:0 14px;border-radius:20px;gap:6px;font-size:11px;border:1px solid var(--gold-dim);background:var(--gold-glow)}
+.ctrl-btn.lang-trigger:hover{background:var(--gold);transform:scale(1.05)}
+.ctrl-btn.lang-trigger:hover .lang-code{color:var(--bg)}
+.ctrl-btn.lang-trigger:hover .globe{opacity:1}
 .lang-menu{display:none;position:absolute;top:48px;right:0;background:var(--bg2);border:1px solid var(--card-border);border-radius:12px;padding:10px;min-width:300px;z-index:1001;backdrop-filter:blur(16px);box-shadow:0 12px 48px rgba(0,0,0,.5);max-height:440px;overflow:hidden}
 .lang-menu.open{display:flex;flex-direction:column}
 .lang-search{width:100%;background:var(--bg3);border:1px solid var(--card-border);border-radius:8px;padding:8px 12px;color:var(--white);font-size:12px;font-family:'Source Sans 3',sans-serif;outline:none;margin-bottom:8px;transition:border-color .2s}
@@ -140,7 +147,7 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 </head>
 <body>
 <canvas id="particles"></canvas>
-<div class="controls no-print"><button class="ctrl-btn" onclick="toggleTheme()" id="themeBtn">🌙</button><div class="lang-switcher"><button class="ctrl-btn" onclick="toggleLangMenu()" id="langBtn">🇬🇧</button><div class="lang-menu" id="langMenu"></div></div><button class="ctrl-btn" onclick="window.print()">🖨</button></div>
+<div class="controls no-print"><button class="ctrl-btn" onclick="toggleTheme()" id="themeBtn">🌙</button><div class="lang-switcher"><button class="ctrl-btn lang-trigger" onclick="toggleLangMenu()" id="langBtn" title="Change Language"><span class="lang-btn-inner"><span class="globe">🌐</span><span class="lang-code">EN</span></span></button><div class="lang-menu" id="langMenu"></div></div><button class="ctrl-btn" onclick="window.print()">🖨</button></div>
 <button class="scroll-top no-print" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <div class="hero">
@@ -386,7 +393,7 @@ async function setLang(code){
   }
   // Update button
   const btn=document.getElementById('langBtn');
-  if(btn)btn.textContent=LANGS[code]?.flag||code.toUpperCase();
+  if(btn)btn.innerHTML='<span class="lang-btn-inner"><span class="globe">🌐</span><span class="lang-code">'+code.toUpperCase()+'</span></span>';
   document.querySelectorAll('.lang-option').forEach(o=>o.classList.toggle('active',o.dataset.lang===code));
 }
 async function detectLang(){
