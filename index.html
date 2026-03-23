@@ -357,7 +357,7 @@ async function setLang(code){
     // Match keys from the JSON to English text content
     document.querySelectorAll('[data-i18n]').forEach(el=>{
       const v=t[el.getAttribute('data-i18n')];
-      if(v){const s=document.createElement('span');s.className='l-dynamic';s.textContent=v;el.appendChild(s)}
+      if(v){const s=document.createElement('span');s.className='l-dynamic';if(v.includes('<'))s.innerHTML=v;else s.textContent=v;el.appendChild(s)}
     });
     document.querySelectorAll('[data-i18n-html]').forEach(el=>{
       const v=t[el.getAttribute('data-i18n-html')];
@@ -404,13 +404,22 @@ buildLangMenu();
     const rev={};
     for(const[k,v]of Object.entries(keys)){if(typeof v==='string'){const c=v.replace(/<[^>]+>/g,'').trim();if(c.length<300)rev[c]=k}}
     document.querySelectorAll('.l.en').forEach(s=>{const p=s.parentElement;if(!p||p.getAttribute('data-i18n'))return;const t=s.textContent.trim();if(rev[t])p.setAttribute('data-i18n',rev[t])});
-    document.querySelectorAll('.lb.en').forEach(d=>{const p=d.parentElement;if(!p||p.getAttribute('data-i18n-html'))return;const h=d.innerHTML.trim();for(const[k,v]of Object.entries(keys)){if(typeof v==='string'&&v.includes('<')&&h.substring(0,80)===v.substring(0,80)){p.setAttribute('data-i18n-html',k);break}}});
+    // Match block elements by comparing stripped text content (first 50 chars)
+    const blockKeys=Object.entries(keys).filter(([k,v])=>typeof v==='string'&&v.includes('<'));
+    document.querySelectorAll('.lb.en').forEach(d=>{
+      const p=d.parentElement;if(!p||p.getAttribute('data-i18n-html'))return;
+      const domText=d.textContent.replace(/\s+/g,' ').trim().substring(0,50);
+      for(const[k,v]of blockKeys){
+        const keyText=v.replace(/<[^>]+>/g,'').replace(/\s+/g,' ').trim().substring(0,50);
+        if(domText&&keyText&&domText===keyText){p.setAttribute('data-i18n-html',k);break}
+      }
+    });
     console.log('[i18n] Auto-tagged '+document.querySelectorAll('[data-i18n]').length+' inline + '+document.querySelectorAll('[data-i18n-html]').length+' block elements');
   }catch(e){console.warn('[i18n] Keys load failed:',e)}
   // Now detect and set language AFTER tagging
   const l=await detectLang();
   await setLang(l);
-})()
+})();
 function toggleStory(btn){const c=btn.closest('.thinking-card'),b=c.querySelector('.story-body'),o=b.classList.contains('open');b.classList.toggle('open');btn.classList.toggle('open');const enTxt=o?'THE STORY':'CLOSE';const ruTxt=o?'ИСТОРИЯ':'ЗАКРЫТЬ';btn.innerHTML='<span class="l en">'+enTxt+'</span><span class="l ru">'+ruTxt+'</span> <span class="arrow">▾</span>'}
 function toggleJob(btn){const d=btn.nextElementSibling;const o=d.classList.contains('open');d.classList.toggle('open');btn.classList.toggle('open');const enTxt=o?'MORE DETAILS':'LESS';const ruTxt=o?'ПОДРОБНЕЕ':'СВЕРНУТЬ';btn.innerHTML='<span class="l en">'+enTxt+'</span><span class="l ru">'+ruTxt+'</span> <span class="arrow">▾</span>'}
 function toggleAll(){const btn=document.querySelector('.expand-all'),bs=document.querySelectorAll('.story-body'),ao=[...bs].every(b=>b.classList.contains('open'));bs.forEach(b=>{const c=b.closest('.thinking-card'),e=c.querySelector('.story-expand');if(ao){b.classList.remove('open');e.classList.remove('open');e.innerHTML='<span class="l en">THE STORY</span><span class="l ru">ИСТОРИЯ</span> <span class="arrow">▾</span>'}else{b.classList.add('open');e.classList.add('open');e.innerHTML='<span class="l en">CLOSE</span><span class="l ru">ЗАКРЫТЬ</span> <span class="arrow">▾</span>'}});btn.innerHTML=ao?'<span class="l en">EXPAND ALL</span><span class="l ru">РАСКРЫТЬ ВСЕ</span>':'<span class="l en">COLLAPSE ALL</span><span class="l ru">СВЕРНУТЬ ВСЕ</span>'}
