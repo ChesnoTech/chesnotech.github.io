@@ -33,12 +33,18 @@
 [data-lang="zh"]{font-family:'Noto Sans SC','Source Sans 3',sans-serif}
 [data-lang="ja"]{font-family:'Noto Sans JP','Source Sans 3',sans-serif}
 .lang-switcher{position:relative}
-.lang-menu{display:none;position:absolute;top:48px;right:0;background:var(--bg3);border:1px solid var(--card-border);border-radius:10px;padding:6px 0;min-width:180px;z-index:1001;backdrop-filter:blur(12px);box-shadow:0 8px 32px rgba(0,0,0,.3);max-height:400px;overflow-y:auto}
-.lang-menu.open{display:block}
-.lang-option{display:flex;align-items:center;gap:8px;padding:7px 16px;cursor:pointer;font-size:11px;color:var(--gray-light);border:none;background:none;width:100%;text-align:left;font-family:'Source Sans 3',sans-serif}
-.lang-option:hover{background:var(--gold-glow);color:var(--white)}
-.lang-option.active{color:var(--gold);font-weight:600}
+.lang-menu{display:none;position:absolute;top:48px;right:0;background:var(--bg2);border:1px solid var(--card-border);border-radius:12px;padding:10px;min-width:300px;z-index:1001;backdrop-filter:blur(16px);box-shadow:0 12px 48px rgba(0,0,0,.5);max-height:440px;overflow:hidden}
+.lang-menu.open{display:flex;flex-direction:column}
+.lang-search{width:100%;background:var(--bg3);border:1px solid var(--card-border);border-radius:8px;padding:8px 12px;color:var(--white);font-size:12px;font-family:'Source Sans 3',sans-serif;outline:none;margin-bottom:8px;transition:border-color .2s}
+.lang-search:focus{border-color:var(--gold)}.lang-search::placeholder{color:var(--gray)}
+.lang-grid{display:grid;grid-template-columns:1fr 1fr;gap:3px;overflow-y:auto;max-height:350px;padding-right:4px}
+.lang-grid::-webkit-scrollbar{width:4px}.lang-grid::-webkit-scrollbar-thumb{background:var(--gold-dim);border-radius:2px}
+.lang-option{display:flex;align-items:center;gap:8px;padding:7px 10px;cursor:pointer;font-size:11px;color:var(--gray-light);transition:all .15s;border:1px solid transparent;background:none;border-radius:8px;text-align:left;font-family:'Source Sans 3',sans-serif;white-space:nowrap}
+.lang-option:hover{background:var(--gold-glow);color:var(--white);border-color:var(--card-border)}
+.lang-option.active{background:var(--gold-glow);color:var(--gold);font-weight:600;border-color:var(--gold-dim)}
+.lang-option .lflag{font-size:18px;line-height:1;flex-shrink:0}.lang-option .lname{overflow:hidden;text-overflow:ellipsis}
 [dir="rtl"] .lang-menu{right:auto;left:0}
+@media(max-width:650px){.lang-menu{min-width:260px;right:-50px}.lang-grid{grid-template-columns:1fr}}
 
 body{background:var(--bg);color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:13.5px;line-height:1.55;max-width:920px;margin:0 auto;transition:all .5s;position:relative;overflow-x:hidden}
 canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.35}
@@ -338,7 +344,7 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 <script>
 function toggleTheme(){const h=document.documentElement,b=document.getElementById('themeBtn');if(h.dataset.theme==='dark'){h.dataset.theme='light';b.textContent='☀️'}else{h.dataset.theme='dark';b.textContent='🌙'}initParticles()}
 /* ===== MULTI-LANGUAGE SYSTEM ===== */
-const LANGS={en:{name:'English',flag:'🇬🇧',dir:'ltr'},ru:{name:'Русский',flag:'🇷🇺',dir:'ltr'},ar:{name:'العربية',flag:'🇸🇦',dir:'rtl'},fr:{name:'Français',flag:'🇫🇷',dir:'ltr'},es:{name:'Español',flag:'🇪🇸',dir:'ltr'},de:{name:'Deutsch',flag:'🇩🇪',dir:'ltr'},zh:{name:'中文',flag:'🇨🇳',dir:'ltr'},ja:{name:'日本語',flag:'🇯🇵',dir:'ltr'}};
+const LANGS={en:{name:'English',flag:'🇬🇧',dir:'ltr'},ru:{name:'Русский',flag:'🇷🇺',dir:'ltr'},ar:{name:'العربية',flag:'🇸🇦',dir:'rtl'},fr:{name:'Français',flag:'🇫🇷',dir:'ltr'},es:{name:'Español',flag:'🇪🇸',dir:'ltr'},de:{name:'Deutsch',flag:'🇩🇪',dir:'ltr'},zh:{name:'中文',flag:'🇨🇳',dir:'ltr'},ja:{name:'日本語',flag:'🇯🇵',dir:'ltr'},pt:{name:'Português',flag:'🇧🇷',dir:'ltr'},tr:{name:'Türkçe',flag:'🇹🇷',dir:'ltr'},hi:{name:'हिन्दी',flag:'🇮🇳',dir:'ltr'},ko:{name:'한국어',flag:'🇰🇷',dir:'ltr'},it:{name:'Italiano',flag:'🇮🇹',dir:'ltr'},nl:{name:'Nederlands',flag:'🇳🇱',dir:'ltr'},pl:{name:'Polski',flag:'🇵🇱',dir:'ltr'},uk:{name:'Українська',flag:'🇺🇦',dir:'ltr'},sv:{name:'Svenska',flag:'🇸🇪',dir:'ltr'},cs:{name:'Čeština',flag:'🇨🇿',dir:'ltr'},ro:{name:'Română',flag:'🇷🇴',dir:'ltr'},id:{name:'Indonesian',flag:'🇮🇩',dir:'ltr'},th:{name:'ไทย',flag:'🇹🇭',dir:'ltr'},vi:{name:'Tiếng Việt',flag:'🇻🇳',dir:'ltr'},bn:{name:'বাংলা',flag:'🇧🇩',dir:'ltr'},fa:{name:'فارسی',flag:'🇮🇷',dir:'rtl'},he:{name:'עברית',flag:'🇮🇱',dir:'rtl'},ms:{name:'Bahasa Melayu',flag:'🇲🇾',dir:'ltr'},fil:{name:'Filipino',flag:'🇵🇭',dir:'ltr'},sw:{name:'Kiswahili',flag:'🇰🇪',dir:'ltr'},da:{name:'Dansk',flag:'🇩🇰',dir:'ltr'}};
 const langCache={};
 async function loadLang(c){if(c==='en'||c==='ru')return null;if(langCache[c])return langCache[c];try{const r=await fetch('lang/'+c+'.json');if(!r.ok)return null;const d=await r.json();langCache[c]=d;return d}catch(e){return null}}
 function loadFont(l){const m={ar:'Noto+Sans+Arabic:wght@400;700',zh:'Noto+Sans+SC:wght@400;700',ja:'Noto+Sans+JP:wght@400;700'};const f=m[l];if(!f||document.querySelector('[data-lf="'+l+'"]'))return;const k=document.createElement('link');k.rel='stylesheet';k.dataset.lf=l;k.href='https://fonts.googleapis.com/css2?family='+f+'&display=swap';document.head.appendChild(k)}
@@ -388,10 +394,16 @@ async function detectLang(){
   if(s&&LANGS[s])return s;
   const bl=navigator.languages||[navigator.language||'en'];
   for(const b of bl){const c=b.split('-')[0].toLowerCase();if(LANGS[c])return c}
-  try{const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),3000);const r=await fetch('https://ipapi.co/json/',{signal:ctrl.signal});clearTimeout(to);const d=await r.json();const m={RU:'ru',EG:'ar',SA:'ar',AE:'ar',FR:'fr',ES:'es',DE:'de',CN:'zh',JP:'ja'};const g=m[d.country_code];if(g&&LANGS[g])return g}catch(e){}
+  try{const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),3000);const r=await fetch('https://ipapi.co/json/',{signal:ctrl.signal});clearTimeout(to);const d=await r.json();const m={RU:'ru',EG:'ar',SA:'ar',AE:'ar',KW:'ar',QA:'ar',BH:'ar',OM:'ar',JO:'ar',LB:'ar',IQ:'ar',LY:'ar',TN:'ar',MA:'ar',DZ:'ar',FR:'fr',ES:'es',DE:'de',AT:'de',CH:'de',CN:'zh',TW:'zh',JP:'ja',KR:'ko',BR:'pt',PT:'pt',TR:'tr',IN:'hi',IT:'it',NL:'nl',BE:'nl',PL:'pl',UA:'uk',SE:'sv',CZ:'cs',RO:'ro',ID:'id',TH:'th',VN:'vi',BD:'bn',IR:'fa',IL:'he',MY:'ms',PH:'fil',KE:'sw',TZ:'sw',DK:'da',MX:'es',AR:'es',CO:'es',CL:'es',PE:'es'};const g=m[d.country_code];if(g&&LANGS[g])return g}catch(e){}
   return'en';
 }
-function buildLangMenu(){const m=document.getElementById('langMenu');if(!m)return;m.innerHTML='';for(const[c,i]of Object.entries(LANGS)){const b=document.createElement('button');b.className='lang-option';b.dataset.lang=c;b.innerHTML=i.flag+' '+i.name;b.onclick=function(){setLang(c);closeLangMenu()};m.appendChild(b)}}
+function buildLangMenu(){const m=document.getElementById('langMenu');if(!m)return;m.innerHTML='';
+  const search=document.createElement('input');search.className='lang-search';search.placeholder='Search language...';search.type='text';
+  search.addEventListener('input',function(){const q=this.value.toLowerCase();grid.querySelectorAll('.lang-option').forEach(o=>{const match=o.dataset.lang.includes(q)||o.querySelector('.lname').textContent.toLowerCase().includes(q);o.style.display=match?'flex':'none'})});
+  m.appendChild(search);
+  const grid=document.createElement('div');grid.className='lang-grid';
+  for(const[c,i]of Object.entries(LANGS)){const b=document.createElement('button');b.className='lang-option';b.dataset.lang=c;b.innerHTML='<span class="lflag">'+i.flag+'</span><span class="lname">'+i.name+'</span>';b.onclick=function(){setLang(c);closeLangMenu()};grid.appendChild(b)}
+  m.appendChild(grid)}
 function toggleLangMenu(){const m=document.getElementById('langMenu');if(m)m.classList.toggle('open')}
 function closeLangMenu(){const m=document.getElementById('langMenu');if(m)m.classList.remove('open')}
 document.addEventListener('click',function(e){if(!e.target.closest('.lang-switcher'))closeLangMenu()});
