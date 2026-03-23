@@ -18,6 +18,27 @@
 [data-lang="en"] .lb.en{display:block}
 [data-lang="ru"] .lb.ru{display:block}
 .lb{display:none}
+.l-dynamic{display:none}
+[data-lang]:not([data-lang="en"]):not([data-lang="ru"]) .l{display:none!important}
+[data-lang]:not([data-lang="en"]):not([data-lang="ru"]) .lb{display:none!important}
+[data-lang]:not([data-lang="en"]):not([data-lang="ru"]) .l-dynamic{display:inline}
+[data-lang]:not([data-lang="en"]):not([data-lang="ru"]) .lb-dynamic{display:block}
+[dir="rtl"]{direction:rtl;text-align:right}
+[dir="rtl"] .timeline{padding-left:0;padding-right:28px}
+[dir="rtl"] .timeline::before{left:auto;right:7px}
+[dir="rtl"] .job::before{left:auto;right:-24px}
+[dir="rtl"] .controls{right:auto;left:15px}
+[dir="rtl"] .contact-row{direction:ltr}
+[data-lang="ar"]{font-family:'Noto Sans Arabic','Source Sans 3',sans-serif}
+[data-lang="zh"]{font-family:'Noto Sans SC','Source Sans 3',sans-serif}
+[data-lang="ja"]{font-family:'Noto Sans JP','Source Sans 3',sans-serif}
+.lang-switcher{position:relative}
+.lang-menu{display:none;position:absolute;top:48px;right:0;background:var(--bg3);border:1px solid var(--card-border);border-radius:10px;padding:6px 0;min-width:180px;z-index:1001;backdrop-filter:blur(12px);box-shadow:0 8px 32px rgba(0,0,0,.3);max-height:400px;overflow-y:auto}
+.lang-menu.open{display:block}
+.lang-option{display:flex;align-items:center;gap:8px;padding:7px 16px;cursor:pointer;font-size:11px;color:var(--gray-light);border:none;background:none;width:100%;text-align:left;font-family:'Source Sans 3',sans-serif}
+.lang-option:hover{background:var(--gold-glow);color:var(--white)}
+.lang-option.active{color:var(--gold);font-weight:600}
+[dir="rtl"] .lang-menu{right:auto;left:0}
 
 body{background:var(--bg);color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:13.5px;line-height:1.55;max-width:920px;margin:0 auto;transition:all .5s;position:relative;overflow-x:hidden}
 canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.35}
@@ -109,10 +130,11 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 .footer-meta{text-align:center;font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gray);padding:10px 0 40px;letter-spacing:2px}
 @media(max-width:650px){.controls{top:10px;right:10px}.ctrl-btn{width:32px;height:32px;font-size:13px}.hero{padding:55px 20px 30px}.content{padding:0 20px 40px}.name{font-size:28px}.projects-grid,.skills-grid,.vault-grid{grid-template-columns:1fr}.hero-stats{gap:15px}.stat-num{font-size:22px}}
 </style>
+<script>(function(){var s=localStorage.getItem('resume-lang');if(s){document.documentElement.dataset.lang=s;document.documentElement.lang=s;if(['ar','fa','he'].indexOf(s)>-1)document.documentElement.dir='rtl'}else{var b=(navigator.languages||[navigator.language])[0];if(b){var c=b.split('-')[0].toLowerCase();var sup={en:1,ru:1,ar:1,fr:1,es:1,de:1,zh:1,ja:1};if(sup[c]){document.documentElement.dataset.lang=c;document.documentElement.lang=c;if(c==='ar')document.documentElement.dir='rtl'}}}})()</script>
 </head>
 <body>
 <canvas id="particles"></canvas>
-<div class="controls no-print"><button class="ctrl-btn" onclick="toggleTheme()" id="themeBtn">🌙</button><button class="ctrl-btn" onclick="toggleLang()" id="langBtn">RU</button><button class="ctrl-btn" onclick="window.print()">🖨</button></div>
+<div class="controls no-print"><button class="ctrl-btn" onclick="toggleTheme()" id="themeBtn">🌙</button><div class="lang-switcher"><button class="ctrl-btn" onclick="toggleLangMenu()" id="langBtn">🇬🇧</button><div class="lang-menu" id="langMenu"></div></div><button class="ctrl-btn" onclick="window.print()">🖨</button></div>
 <button class="scroll-top no-print" id="scrollTop" onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
 
 <div class="hero">
@@ -315,7 +337,74 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 
 <script>
 function toggleTheme(){const h=document.documentElement,b=document.getElementById('themeBtn');if(h.dataset.theme==='dark'){h.dataset.theme='light';b.textContent='☀️'}else{h.dataset.theme='dark';b.textContent='🌙'}initParticles()}
-function toggleLang(){const h=document.documentElement,b=document.getElementById('langBtn');if(h.dataset.lang==='en'){h.dataset.lang='ru';b.textContent='EN'}else{h.dataset.lang='en';b.textContent='RU'}}
+/* ===== MULTI-LANGUAGE SYSTEM ===== */
+const LANGS={en:{name:'English',flag:'🇬🇧',dir:'ltr'},ru:{name:'Русский',flag:'🇷🇺',dir:'ltr'},ar:{name:'العربية',flag:'🇸🇦',dir:'rtl'},fr:{name:'Français',flag:'🇫🇷',dir:'ltr'},es:{name:'Español',flag:'🇪🇸',dir:'ltr'},de:{name:'Deutsch',flag:'🇩🇪',dir:'ltr'},zh:{name:'中文',flag:'🇨🇳',dir:'ltr'},ja:{name:'日本語',flag:'🇯🇵',dir:'ltr'}};
+const langCache={};
+async function loadLang(c){if(c==='en'||c==='ru')return null;if(langCache[c])return langCache[c];try{const r=await fetch('lang/'+c+'.json');if(!r.ok)return null;const d=await r.json();langCache[c]=d;return d}catch(e){return null}}
+function loadFont(l){const m={ar:'Noto+Sans+Arabic:wght@400;700',zh:'Noto+Sans+SC:wght@400;700',ja:'Noto+Sans+JP:wght@400;700'};const f=m[l];if(!f||document.querySelector('[data-lf="'+l+'"]'))return;const k=document.createElement('link');k.rel='stylesheet';k.dataset.lf=l;k.href='https://fonts.googleapis.com/css2?family='+f+'&display=swap';document.head.appendChild(k)}
+async function setLang(code){
+  const h=document.documentElement;
+  localStorage.setItem('resume-lang',code);
+  h.dataset.lang=code;h.lang=code;h.dir=LANGS[code]?.dir||'ltr';
+  // Remove old dynamic elements
+  document.querySelectorAll('.l-dynamic,.lb-dynamic').forEach(e=>e.remove());
+  if(code!=='en'&&code!=='ru'){
+    // Load translation JSON
+    const t=await loadLang(code);
+    if(!t){setLang('en');return}
+    loadFont(code);
+    // Auto-discover: find all elements with .l.en children and inject translations
+    // Match keys from the JSON to English text content
+    document.querySelectorAll('[data-i18n]').forEach(el=>{
+      const v=t[el.getAttribute('data-i18n')];
+      if(v){const s=document.createElement('span');s.className='l-dynamic';s.textContent=v;el.appendChild(s)}
+    });
+    document.querySelectorAll('[data-i18n-html]').forEach(el=>{
+      const v=t[el.getAttribute('data-i18n-html')];
+      if(v){const d=document.createElement('div');d.className='lb-dynamic';d.innerHTML=v;el.appendChild(d)}
+    });
+    // Auto-patch: for elements WITHOUT data-i18n, try matching by English text
+    if(!document.querySelector('[data-i18n]')){
+      // Fallback: auto-tag all .l.en spans' parents
+      document.querySelectorAll('.l.en').forEach(span=>{
+        const p=span.parentElement;
+        if(p&&!p.getAttribute('data-i18n')){
+          const txt=span.textContent.trim();
+          // Find matching key in translation
+          for(const[k,v]of Object.entries(t)){
+            // Try to match by looking up the English key value
+          }
+        }
+      });
+    }
+  }
+  // Update button
+  const btn=document.getElementById('langBtn');
+  if(btn)btn.textContent=LANGS[code]?.flag||code.toUpperCase();
+  document.querySelectorAll('.lang-option').forEach(o=>o.classList.toggle('active',o.dataset.lang===code));
+}
+async function detectLang(){
+  const s=localStorage.getItem('resume-lang');
+  if(s&&LANGS[s])return s;
+  const bl=navigator.languages||[navigator.language||'en'];
+  for(const b of bl){const c=b.split('-')[0].toLowerCase();if(LANGS[c])return c}
+  try{const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),3000);const r=await fetch('https://ipapi.co/json/',{signal:ctrl.signal});clearTimeout(to);const d=await r.json();const m={RU:'ru',EG:'ar',SA:'ar',AE:'ar',FR:'fr',ES:'es',DE:'de',CN:'zh',JP:'ja'};const g=m[d.country_code];if(g&&LANGS[g])return g}catch(e){}
+  return'en';
+}
+function buildLangMenu(){const m=document.getElementById('langMenu');if(!m)return;m.innerHTML='';for(const[c,i]of Object.entries(LANGS)){const b=document.createElement('button');b.className='lang-option';b.dataset.lang=c;b.innerHTML=i.flag+' '+i.name;b.onclick=function(){setLang(c);closeLangMenu()};m.appendChild(b)}}
+function toggleLangMenu(){const m=document.getElementById('langMenu');if(m)m.classList.toggle('open')}
+function closeLangMenu(){const m=document.getElementById('langMenu');if(m)m.classList.remove('open')}
+document.addEventListener('click',function(e){if(!e.target.closest('.lang-switcher'))closeLangMenu()});
+buildLangMenu();
+// Auto-tag elements with data-i18n using keys file, then detect and set language
+fetch('lang/_keys.json').then(r=>r.json()).then(keys=>{
+  const rev={};
+  for(const[k,v]of Object.entries(keys)){if(typeof v==='string'){const c=v.replace(/<[^>]+>/g,'').trim();if(c.length<300)rev[c]=k}}
+  document.querySelectorAll('.l.en').forEach(s=>{const p=s.parentElement;if(!p||p.getAttribute('data-i18n'))return;const t=s.textContent.trim();if(rev[t])p.setAttribute('data-i18n',rev[t])});
+  document.querySelectorAll('.lb.en').forEach(d=>{const p=d.parentElement;if(!p||p.getAttribute('data-i18n-html'))return;const h=d.innerHTML.trim();for(const[k,v]of Object.entries(keys)){if(typeof v==='string'&&v.includes('<')&&h.substring(0,80)===v.substring(0,80)){p.setAttribute('data-i18n-html',k);break}}});
+  console.log('[i18n] Auto-tagged');
+}).catch(e=>console.warn(e));
+(async function(){const l=await detectLang();setLang(l)})()
 function toggleStory(btn){const c=btn.closest('.thinking-card'),b=c.querySelector('.story-body'),o=b.classList.contains('open');b.classList.toggle('open');btn.classList.toggle('open');const enTxt=o?'THE STORY':'CLOSE';const ruTxt=o?'ИСТОРИЯ':'ЗАКРЫТЬ';btn.innerHTML='<span class="l en">'+enTxt+'</span><span class="l ru">'+ruTxt+'</span> <span class="arrow">▾</span>'}
 function toggleJob(btn){const d=btn.nextElementSibling;const o=d.classList.contains('open');d.classList.toggle('open');btn.classList.toggle('open');const enTxt=o?'MORE DETAILS':'LESS';const ruTxt=o?'ПОДРОБНЕЕ':'СВЕРНУТЬ';btn.innerHTML='<span class="l en">'+enTxt+'</span><span class="l ru">'+ruTxt+'</span> <span class="arrow">▾</span>'}
 function toggleAll(){const btn=document.querySelector('.expand-all'),bs=document.querySelectorAll('.story-body'),ao=[...bs].every(b=>b.classList.contains('open'));bs.forEach(b=>{const c=b.closest('.thinking-card'),e=c.querySelector('.story-expand');if(ao){b.classList.remove('open');e.classList.remove('open');e.innerHTML='<span class="l en">THE STORY</span><span class="l ru">ИСТОРИЯ</span> <span class="arrow">▾</span>'}else{b.classList.add('open');e.classList.add('open');e.innerHTML='<span class="l en">CLOSE</span><span class="l ru">ЗАКРЫТЬ</span> <span class="arrow">▾</span>'}});btn.innerHTML=ao?'<span class="l en">EXPAND ALL</span><span class="l ru">РАСКРЫТЬ ВСЕ</span>':'<span class="l en">COLLAPSE ALL</span><span class="l ru">СВЕРНУТЬ ВСЕ</span>'}
