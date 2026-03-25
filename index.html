@@ -166,6 +166,29 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 .footer-quote p{font-family:'Playfair Display',serif;font-size:19px;font-style:italic;color:var(--gold)}
 .footer-meta{text-align:center;font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gray);padding:10px 0 40px;letter-spacing:2px}
 @media(max-width:650px){.controls{top:10px;right:10px}.ctrl-btn{width:32px;height:32px;font-size:13px}.hero{padding:55px 20px 30px}.content{padding:0 20px 40px}.name{font-size:28px}.projects-grid,.skills-grid,.vault-grid{grid-template-columns:1fr}.hero-stats{gap:15px}.stat-num{font-size:22px}}
+/* CONTACT FORM */
+.contact-form{margin:25px 0}
+.contact-form form{display:grid;gap:14px;max-width:600px}
+.contact-form input,.contact-form textarea{background:var(--bg3);border:1px solid var(--card-border);color:var(--white);padding:12px 16px;border-radius:8px;font-family:'Source Sans 3',sans-serif;font-size:14px;transition:border .3s}
+.contact-form input:focus,.contact-form textarea:focus{outline:none;border-color:var(--gold)}
+.contact-form textarea{min-height:120px;resize:vertical}
+.contact-form button[type="submit"]{background:var(--gold);color:var(--bg);border:none;padding:12px 28px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:2px;cursor:pointer;transition:all .3s;text-transform:uppercase;width:fit-content}
+.contact-form button[type="submit"]:hover{transform:scale(1.05);box-shadow:0 4px 20px var(--gold-glow)}
+.form-success{display:none;background:var(--teal-dim);border:1px solid rgba(46,196,182,.2);color:var(--teal);padding:14px 20px;border-radius:8px;font-size:14px;margin-top:10px}
+/* RECOMMENDATIONS */
+.rec-card{background:var(--bg3);border:1px solid var(--card-border);border-radius:10px;padding:20px;margin:12px 0;position:relative}
+.rec-card::before{content:'\201C';position:absolute;top:10px;left:16px;font-family:'Playfair Display',serif;font-size:40px;color:var(--gold-dim);opacity:.3}
+[dir="rtl"] .rec-card::before{left:auto;right:16px;content:'\201D'}
+.rec-text{font-size:14px;color:var(--gray-light);line-height:1.65;padding-left:24px;font-style:italic}
+[dir="rtl"] .rec-text{padding-left:0;padding-right:24px}
+.rec-author{font-size:12px;color:var(--gold);font-family:'JetBrains Mono',monospace;margin-top:10px;padding-left:24px}
+[dir="rtl"] .rec-author{padding-left:0;padding-right:24px}
+.rec-form{margin-top:20px}
+.rec-form form{display:grid;gap:12px;max-width:600px}
+.rec-form input,.rec-form textarea{background:var(--bg3);border:1px solid var(--card-border);color:var(--white);padding:10px 14px;border-radius:8px;font-family:'Source Sans 3',sans-serif;font-size:13px}
+.rec-form textarea{min-height:80px;resize:vertical}
+.rec-form button[type="submit"]{background:var(--teal);color:var(--bg);border:none;padding:10px 24px;border-radius:8px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:2px;cursor:pointer;transition:all .3s;text-transform:uppercase;width:fit-content}
+.rec-form button[type="submit"]:hover{transform:scale(1.05)}
 </style>
 <script>(function(){var s=localStorage.getItem('resume-lang');if(s){document.documentElement.dataset.lang=s;document.documentElement.lang=s;if(['ar','fa','he'].indexOf(s)>-1)document.documentElement.dir='rtl'}else{var b=(navigator.languages||[navigator.language])[0];if(b){var c=b.split('-')[0].toLowerCase();var sup={en:1,ru:1,ar:1,fr:1,es:1,de:1,zh:1,ja:1};if(sup[c]){document.documentElement.dataset.lang=c;document.documentElement.lang=c;if(c==='ar')document.documentElement.dir='rtl'}}}})()</script>
 </head>
@@ -368,6 +391,53 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 <div class="lb ru"><p>Придумал систему <strong>концентрации солнечного света через линзы и оптоволокно</strong> для накачки лазерной среды — преобразование солнечного света в когерентную лазерную энергию без электричества.</p><p>Сейчас это <strong>реальная технология в активной разработке</strong> лабораториями по всему миру для космической тяги, производства и передачи энергии.</p><div class="impact">Сейчас — активная область исследований в лабораториях мира</div></div>
 </div></div>
 
+<!-- 09 CONTACT FORM -->
+<div class="section-header animate-in"><span class="num">09</span><h2><span class="l en">Hire Me</span><span class="l ru">Связаться</span></h2><div class="line"></div></div>
+<div class="contact-form animate-in">
+<p style="font-size:14px;color:var(--gray-light);margin-bottom:15px"><span class="l en">Interested in working together? Send me a message. I prefer written communication and respond within 24 hours.</span><span class="l ru">Хотите работать вместе? Напишите мне. Предпочитаю переписку, отвечаю в течение 24 часов.</span></p>
+<form action="https://formspree.io/f/xpwzpzbn" method="POST" id="contactForm">
+<input type="text" name="name" placeholder="Your name" required>
+<input type="email" name="_replyto" placeholder="Your email" required>
+<input type="text" name="subject" placeholder="Subject (e.g. Job opportunity, Project, Collaboration)">
+<textarea name="message" placeholder="Your message..." required></textarea>
+<input type="hidden" name="_subject" value="New message from chesnotech.github.io">
+<button type="submit"><span class="l en">SEND MESSAGE</span><span class="l ru">ОТПРАВИТЬ</span></button>
+</form>
+<div class="form-success" id="formSuccess"><span class="l en">Message sent! I'll respond within 24 hours.</span><span class="l ru">Сообщение отправлено! Отвечу в течение 24 часов.</span></div>
+</div>
+
+<!-- 10 RECOMMENDATIONS -->
+<div class="section-header animate-in"><span class="num">10</span><h2><span class="l en">Recommendations</span><span class="l ru">Рекомендации</span></h2><div class="line"></div></div>
+<div class="animate-in">
+<p style="font-size:13px;color:var(--gray);margin-bottom:15px"><span class="l en">What colleagues and clients say about working with me:</span><span class="l ru">Что говорят коллеги и клиенты о работе со мной:</span></p>
+
+<div class="rec-card">
+<div class="rec-text">"When Ayoub left, we needed 4 people to replace him — 1 engineer and 3 staff members. He handled everything."</div>
+<div class="rec-author">— TMT Contracting, Company Owner (8 years together)</div>
+</div>
+
+<div class="rec-card">
+<div class="rec-text">"His salary was paid by the overpayments he recovered in his very first vendor audit."</div>
+<div class="rec-author">— TMT Contracting, on cost recovery</div>
+</div>
+
+<div class="rec-card">
+<div class="rec-text">"Clients requested him by name. He taught himself our hosting platform by solving problems at night — we found out through client feedback."</div>
+<div class="rec-author">— IM Solutions, on self-driven growth</div>
+</div>
+
+<p style="font-size:13px;color:var(--gray);margin-top:25px;margin-bottom:10px"><span class="l en">Worked with me? Leave a recommendation:</span><span class="l ru">Работали со мной? Оставьте рекомендацию:</span></p>
+<div class="rec-form">
+<form action="https://formspree.io/f/xpwzpzbn" method="POST">
+<input type="text" name="rec_name" placeholder="Your name and company" required>
+<input type="text" name="rec_relation" placeholder="How we worked together (e.g. colleague at TMT, client)">
+<textarea name="rec_text" placeholder="Your recommendation..." required></textarea>
+<input type="hidden" name="_subject" value="New recommendation for chesnotech.github.io">
+<button type="submit"><span class="l en">SUBMIT RECOMMENDATION</span><span class="l ru">ОТПРАВИТЬ РЕКОМЕНДАЦИЮ</span></button>
+</form>
+</div>
+</div>
+
 <div class="footer-quote animate-in"><p>"<span class="l en">I design systems that don't exist yet. Then I find ways to build them.</span><span class="l ru">Я проектирую системы, которых ещё не существует. А потом нахожу способ их построить.</span>"</p></div>
 <div class="footer-meta">AYOUB MOHAMED SAMIR · <span class="l en">MOSCOW</span><span class="l ru">МОСКВА</span> · 2026</div>
 </div>
@@ -472,5 +542,18 @@ const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting)en.ta
 window.addEventListener('scroll',()=>{document.getElementById('scrollTop').style.display=window.scrollY>400?'flex':'none'});
 function initParticles(){const c=document.getElementById('particles'),x=c.getContext('2d');c.width=window.innerWidth;c.height=window.innerHeight;const d=document.documentElement.dataset.theme==='dark',col=d?'212,168,83':'168,125,40';const ps=[];for(let i=0;i<35;i++)ps.push({x:Math.random()*c.width,y:Math.random()*c.height,s:Math.random()*1.8+.5,dx:(Math.random()-.5)*.25,dy:(Math.random()-.5)*.25,o:Math.random()*.35+.1});function f(){x.clearRect(0,0,c.width,c.height);ps.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;x.beginPath();x.arc(p.x,p.y,p.s,0,Math.PI*2);x.fillStyle=`rgba(${col},${p.o})`;x.fill()});ps.forEach((a,i)=>ps.slice(i+1).forEach(b=>{const dx=a.x-b.x,dy=a.y-b.y,dist=Math.sqrt(dx*dx+dy*dy);if(dist<130){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle=`rgba(${col},${.06*(1-dist/130)})`;x.lineWidth=.5;x.stroke()}}));requestAnimationFrame(f)}f();window.addEventListener('resize',()=>{c.width=window.innerWidth;c.height=window.innerHeight})}
 initParticles();
+</script>
+<!-- Visitor Tracking - GoatCounter (privacy-friendly, no cookies) -->
+<script data-goatcounter="https://chesnotech.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<!-- Contact Form Success Handler -->
+<script>
+document.getElementById('contactForm')?.addEventListener('submit',function(e){
+  e.preventDefault();
+  const f=this;const btn=f.querySelector('button[type="submit"]');
+  btn.disabled=true;btn.textContent='Sending...';
+  fetch(f.action,{method:'POST',body:new FormData(f),headers:{'Accept':'application/json'}})
+  .then(r=>{if(r.ok){f.reset();document.getElementById('formSuccess').style.display='block';btn.textContent='Sent!';}else{btn.textContent='Error, try again';btn.disabled=false}})
+  .catch(()=>{btn.textContent='Error, try again';btn.disabled=false});
+});
 </script>
 </body></html>
