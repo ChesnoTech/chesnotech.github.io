@@ -491,6 +491,8 @@ async function setLang(code){
   document.querySelectorAll('.lang-option').forEach(o=>o.classList.toggle('active',o.dataset.lang===code));
 }
 async function detectLang(){
+  const u=new URLSearchParams(window.location.search).get('lang');
+  if(u&&LANGS[u.toLowerCase()])return u.toLowerCase();
   const s=localStorage.getItem('resume-lang');
   if(s&&LANGS[s])return s;
   const bl=navigator.languages||[navigator.language||'en'];
