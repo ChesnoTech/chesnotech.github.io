@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark" data-lang="en">
+<html lang="ru" data-theme="dark" data-lang="ru">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -496,7 +496,7 @@ async function detectLang(){
   const bl=navigator.languages||[navigator.language||'en'];
   for(const b of bl){const c=b.split('-')[0].toLowerCase();if(LANGS[c])return c}
   try{const ctrl=new AbortController();const to=setTimeout(()=>ctrl.abort(),3000);const r=await fetch('https://ipapi.co/json/',{signal:ctrl.signal});clearTimeout(to);const d=await r.json();const m={RU:'ru',EG:'ar',SA:'ar',AE:'ar',KW:'ar',QA:'ar',BH:'ar',OM:'ar',JO:'ar',LB:'ar',IQ:'ar',LY:'ar',TN:'ar',MA:'ar',DZ:'ar',FR:'fr',ES:'es',DE:'de',AT:'de',CH:'de',CN:'zh',TW:'zh',JP:'ja',KR:'ko',BR:'pt',PT:'pt',TR:'tr',IN:'hi',IT:'it',NL:'nl',BE:'nl',PL:'pl',UA:'uk',SE:'sv',CZ:'cs',RO:'ro',ID:'id',TH:'th',VN:'vi',BD:'bn',IR:'fa',IL:'he',MY:'ms',PH:'fil',KE:'sw',TZ:'sw',DK:'da',MX:'es',AR:'es',CO:'es',CL:'es',PE:'es'};const g=m[d.country_code];if(g&&LANGS[g])return g}catch(e){}
-  return'en';
+  return'ru';
 }
 function buildLangMenu(){const m=document.getElementById('langMenu');if(!m)return;m.innerHTML='';
   const search=document.createElement('input');search.className='lang-search';search.placeholder='Search language...';search.type='text';
