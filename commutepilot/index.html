@@ -161,7 +161,12 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 <div class="waitlist">
 <h2><span class="l en">Be the <span style="color:var(--gold)">first</span></span><span class="l ru">Будьте <span style="color:var(--gold)">первыми</span></span></h2>
 <p class="sub"><span class="l en">Join the waitlist. We'll notify you when CommutePilot launches.</span><span class="l ru">Мы уведомим вас о запуске CommutePilot в Москве.</span></p>
-<div class="wf" id="wf"><input type="email" class="wi" id="ei" placeholder="your@email.com"><button class="cta-btn" onclick="sub()"><span class="l en">Join 🚀</span><span class="l ru">Вступить 🚀</span></button></div>
+<form class="wf" id="wf" action="https://formspree.io/f/xform" method="POST">
+<input type="email" name="email" class="wi" placeholder="your@email.com" required>
+<input type="hidden" name="_subject" value="New CommutePilot Waitlist Signup">
+<input type="hidden" name="_next" value="https://chesnotech.github.io/commutepilot/?thanks=1">
+<button type="submit" class="cta-btn"><span class="l en">Join 🚀</span><span class="l ru">Вступить 🚀</span></button>
+</form>
 <div class="wc" id="wc"><span class="l en">Be among the first to try autopilot commuting</span><span class="l ru">Станьте первыми пользователями автопилота</span></div>
 <div class="ws" id="ws"><span class="l en">✅ You're on the list!</span><span class="l ru">✅ Вы в списке!</span></div>
 </div>
@@ -187,7 +192,7 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 
 <script>
 function toggleLang(){const h=document.documentElement;h.dataset.lang=h.dataset.lang==='en'?'ru':'en'}
-function sub(){const e=document.getElementById('ei').value;if(!e||!e.includes('@')){document.getElementById('ei').style.borderColor='#E76F51';return}const l=JSON.parse(localStorage.getItem('cp_wl')||'[]');l.push({email:e,date:new Date().toISOString()});localStorage.setItem('cp_wl',JSON.stringify(l));fetch('https://formspree.io/f/commutepilot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e})}).catch(()=>{});document.getElementById('wf').style.display='none';document.getElementById('wc').style.display='none';document.getElementById('ws').style.display='block'}
+if(new URLSearchParams(window.location.search).get('thanks')==='1'){document.getElementById('wf').style.display='none';document.getElementById('wc').style.display='none';document.getElementById('ws').style.display='block';document.getElementById('waitlist').scrollIntoView()}
 const c=document.getElementById('particles'),x=c.getContext('2d');c.width=window.innerWidth;c.height=window.innerHeight;const ps=[];for(let i=0;i<30;i++)ps.push({x:Math.random()*c.width,y:Math.random()*c.height,s:Math.random()*1.5+.5,dx:(Math.random()-.5)*.2,dy:(Math.random()-.5)*.2,o:Math.random()*.3+.1});function f(){x.clearRect(0,0,c.width,c.height);ps.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;x.beginPath();x.arc(p.x,p.y,p.s,0,Math.PI*2);x.fillStyle=`rgba(212,168,83,${p.o})`;x.fill()});ps.forEach((a,i)=>ps.slice(i+1).forEach(b=>{const dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);if(d<120){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle=`rgba(212,168,83,${.05*(1-d/120)})`;x.lineWidth=.5;x.stroke()}}));requestAnimationFrame(f)}f();
 window.addEventListener('resize',()=>{c.width=window.innerWidth;c.height=window.innerHeight});
 document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'})})});
