@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CommutePilot — Your Commute on Autopilot</title>
+<meta name="description" content="Sleep on transit. Wake at your stop. CommutePilot runs your entire commute so you don't have to think.">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🚀</text></svg>">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=Source+Sans+3:wght@300;400;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{--bg:#08080D;--bg2:#0E0E15;--bg3:#16161F;--gold:#D4A853;--gold-dim:#B8923A;--gold-glow:rgba(212,168,83,0.10);--teal:#2EC4B6;--teal-dim:rgba(46,196,182,0.12);--white:#EDEAE3;--gray:#6E6E80;--gray-light:#9E9EB0;--card-border:rgba(212,168,83,0.08);--accent:#E76F51}
+.l{display:none}[data-lang="en"] .l.en{display:inline}[data-lang="ru"] .l.ru{display:inline}
+body{background:var(--bg);color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:16px;line-height:1.6;overflow-x:hidden}
+a{color:var(--teal);text-decoration:none}a:hover{color:var(--gold)}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:15px 30px;display:flex;justify-content:space-between;align-items:center;backdrop-filter:blur(20px);background:rgba(8,8,13,0.8);border-bottom:1px solid var(--card-border)}
+.nav-logo{font-family:'Playfair Display',serif;font-size:20px;font-weight:900;color:var(--white)}.nav-logo span{color:var(--gold)}
+.nav-btns{display:flex;gap:10px}
+.nav-btn{background:var(--bg3);border:1px solid var(--card-border);color:var(--gold);padding:6px 14px;border-radius:20px;cursor:pointer;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;transition:all .3s}
+.nav-btn:hover{background:var(--gold);color:var(--bg)}
+.cta-btn{background:var(--gold);color:var(--bg);border:none;padding:12px 28px;border-radius:30px;font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:15px;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:8px}
+.cta-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,168,83,0.3)}
+.hero{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;text-align:center;padding:120px 30px 60px;position:relative;overflow:hidden}
+.hero::before{content:'';position:absolute;top:-30%;left:50%;transform:translateX(-50%);width:800px;height:800px;background:radial-gradient(circle,rgba(212,168,83,0.06) 0%,transparent 70%);pointer-events:none}
+.hero-badge{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:25px;padding:6px 16px;border:1px solid var(--teal-dim);border-radius:20px;display:inline-block}
+.hero h1{font-family:'Playfair Display',serif;font-size:clamp(40px,7vw,72px);font-weight:900;line-height:1.1;margin-bottom:20px;max-width:800px}.hero h1 span{color:var(--gold)}
+.hero-sub{font-size:20px;color:var(--gray-light);max-width:600px;margin:0 auto 35px;font-weight:300}.hero-sub strong{color:var(--white);font-weight:600}
+.hero-visual{margin-top:50px;display:flex;gap:20px;flex-wrap:wrap;justify-content:center}
+.sc{background:var(--bg3);border:1px solid var(--card-border);border-radius:12px;padding:20px;width:170px;text-align:center;transition:all .3s}
+.sc:hover{transform:translateY(-5px);border-color:var(--gold-dim);box-shadow:0 10px 30px rgba(0,0,0,.3)}
+.sc .i{font-size:32px;margin-bottom:10px}.sc h4{font-size:13px;color:var(--white);margin-bottom:5px}.sc p{font-size:11px;color:var(--gray)}
+.section{padding:80px 30px;max-width:1000px;margin:0 auto}
+.section-label{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gold);letter-spacing:3px;text-transform:uppercase;margin-bottom:15px}
+.section h2{font-family:'Playfair Display',serif;font-size:clamp(28px,4vw,42px);font-weight:700;margin-bottom:20px;line-height:1.2}.section h2 span{color:var(--gold)}
+.lead{font-size:18px;color:var(--gray-light);line-height:1.7;margin-bottom:30px;font-weight:300}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:20px;margin:30px 0}
+.pc{background:var(--bg3);border:1px solid rgba(231,111,81,0.15);border-radius:10px;padding:20px}
+.pc .i{font-size:24px;margin-bottom:10px}.pc h4{color:var(--accent);font-size:14px;margin-bottom:6px}.pc p{font-size:13px;color:var(--gray-light);line-height:1.5}
+.fgrid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:20px;margin:30px 0}
+.fc{background:var(--bg3);border:1px solid var(--card-border);border-radius:12px;padding:24px;position:relative;transition:all .3s}
+.fc:hover{border-color:var(--gold-dim);transform:translateY(-3px);box-shadow:0 8px 30px rgba(0,0,0,.2)}
+.fc::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:var(--gold);border-radius:12px 0 0 12px}
+.fc .i{font-size:28px;margin-bottom:12px}.fc h4{font-size:15px;color:var(--white);margin-bottom:8px;font-weight:700}.fc p{font-size:12.5px;color:var(--gray-light);line-height:1.55}
+.fc .tag{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--teal);background:var(--teal-dim);padding:2px 8px;border-radius:3px;display:inline-block;margin-top:10px}
+.steps{display:flex;gap:0;margin:40px 0;position:relative}
+.steps::before{content:'';position:absolute;top:35px;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--gold),var(--teal))}
+.step{flex:1;text-align:center;position:relative;padding:0 10px}
+.step-num{width:70px;height:70px;background:var(--bg);border:2px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 15px;font-family:'Playfair Display',serif;font-size:24px;font-weight:900;color:var(--gold);position:relative;z-index:2}
+.step h4{font-size:14px;color:var(--white);margin-bottom:5px}.step p{font-size:12px;color:var(--gray)}
+.mvp-box{background:var(--bg3);border:2px solid var(--gold-dim);border-radius:16px;padding:40px;text-align:center;margin:40px 0}
+.mvp-box h3{font-family:'Playfair Display',serif;font-size:28px;color:var(--gold);margin-bottom:15px}
+.mvp-box p{font-size:16px;color:var(--gray-light);max-width:600px;margin:0 auto 20px}
+.mvp-stats{display:flex;justify-content:center;gap:40px;margin:25px 0}
+.ms{text-align:center}.ms .n{font-family:'Playfair Display',serif;font-size:36px;font-weight:900;color:var(--gold)}.ms .lb2{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--gray);letter-spacing:2px;text-transform:uppercase;margin-top:4px}
+.waitlist{background:linear-gradient(135deg,var(--bg2),var(--bg3));border:1px solid var(--card-border);border-radius:20px;padding:60px 40px;text-align:center;margin:60px 0}
+.waitlist h2{font-family:'Playfair Display',serif;font-size:36px;margin-bottom:10px}
+.waitlist .sub{color:var(--gray-light);margin-bottom:30px}
+.wf{display:flex;gap:12px;max-width:500px;margin:0 auto;flex-wrap:wrap;justify-content:center}
+.wi{flex:1;min-width:250px;padding:14px 20px;background:var(--bg);border:1px solid var(--card-border);border-radius:30px;color:var(--white);font-family:'Source Sans 3',sans-serif;font-size:15px;outline:none;transition:border-color .3s}.wi:focus{border-color:var(--gold)}.wi::placeholder{color:var(--gray)}
+.wc{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gold-dim);margin-top:15px}
+.ws{display:none;color:var(--teal);font-weight:600;margin-top:15px;font-size:16px}
+.founder{display:flex;gap:30px;align-items:center;margin:60px 0;padding:30px;background:var(--bg3);border:1px solid var(--card-border);border-radius:16px}
+.founder h4{font-size:18px;color:var(--white);margin-bottom:5px}
+.founder .t{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--teal);margin-bottom:10px}
+.founder p{font-size:13px;color:var(--gray-light);line-height:1.6}
+.fl{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:10px;display:inline-block}
+.footer{text-align:center;padding:40px 30px;border-top:1px solid var(--card-border)}
+.footer p{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:2px}
+canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.2}
+.content{position:relative;z-index:1}
+@media(max-width:768px){.hero h1{font-size:32px}.fgrid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}.steps{flex-direction:column;gap:20px}.steps::before{display:none}.mvp-stats{flex-direction:column;gap:15px}.founder{flex-direction:column;text-align:center}.nav{padding:10px 15px}.waitlist{padding:40px 20px}}
+</style>
+</head>
+<body>
+<canvas id="particles"></canvas>
+<div class="content">
+<nav class="nav"><div class="nav-logo">Commute<span>Pilot</span></div><div class="nav-btns"><button class="nav-btn" onclick="toggleLang()"><span class="l en">RU</span><span class="l ru">EN</span></button><a href="#waitlist" class="cta-btn" style="padding:8px 20px;font-size:13px"><span class="l en">Join Waitlist</span><span class="l ru">В список</span></a></div></nav>
+
+<section class="hero">
+<div class="hero-badge"><span class="l en">COMING TO MOSCOW METRO FIRST</span><span class="l ru">СНАЧАЛА В МОСКОВСКОМ МЕТРО</span></div>
+<h1><span class="l en">Your Commute on <span>Autopilot</span></span><span class="l ru">Ваша поездка на <span>автопилоте</span></span></h1>
+<p class="hero-sub"><span class="l en"><strong>Sleep on transit. Wake at your stop.</strong> Set your journey once — metro, bus, taxi — and CommutePilot runs it every day. No missed stops. No stress.</span><span class="l ru"><strong>Спите в транспорте. Просыпайтесь на остановке.</strong> Задайте маршрут один раз — метро, автобус, такси — и CommutePilot ведёт вас каждый день.</span></p>
+<a href="#waitlist" class="cta-btn"><span class="l en">🚀 Join the Waitlist — It's Free</span><span class="l ru">🚀 Присоединиться — бесплатно</span></a>
+<div class="hero-visual">
+<div class="sc"><div class="i">😴</div><h4><span class="l en">Sleep</span><span class="l ru">Спите</span></h4><p><span class="l en">On the metro</span><span class="l ru">В метро</span></p></div>
+<div class="sc"><div class="i">📳</div><h4><span class="l en">Wake</span><span class="l ru">Будильник</span></h4><p><span class="l en">2 stops before</span><span class="l ru">За 2 остановки</span></p></div>
+<div class="sc"><div class="i">☕</div><h4><span class="l en">Coffee</span><span class="l ru">Кофе</span></h4><p><span class="l en">Already ordered</span><span class="l ru">Уже заказан</span></p></div>
+<div class="sc"><div class="i">🚕</div><h4><span class="l en">Taxi</span><span class="l ru">Такси</span></h4><p><span class="l en">Pre-booked</span><span class="l ru">Забронировано</span></p></div>
+<div class="sc"><div class="i">🏠</div><h4><span class="l en">Home</span><span class="l ru">Дома</span></h4><p><span class="l en">Zero effort</span><span class="l ru">Ноль усилий</span></p></div>
+</div>
+</section>
+
+<section class="section">
+<div class="section-label"><span class="l en">THE PROBLEM</span><span class="l ru">ПРОБЛЕМА</span></div>
+<h2><span class="l en">Commuting is <span>broken</span></span><span class="l ru">Поездки <span>сломаны</span></span></h2>
+<p class="lead"><span class="l en">3 billion people commute daily. Every one manages their journey manually. It's exhausting.</span><span class="l ru">3 миллиарда людей ездят каждый день. Каждый управляет поездкой вручную. Это изматывает.</span></p>
+<div class="pgrid">
+<div class="pc"><div class="i">📍</div><h4><span class="l en">GPS Fails Underground</span><span class="l ru">GPS не работает под землёй</span></h4><p><span class="l en">Every alarm app uses GPS. Every alarm fails in the metro.</span><span class="l ru">Все будильники используют GPS. Все не работают в метро.</span></p></div>
+<div class="pc"><div class="i">🔄</div><h4><span class="l en">Same Route, Daily Setup</span><span class="l ru">Тот же маршрут, ежедневная настройка</span></h4><p><span class="l en">Same route every day, set up from scratch each time.</span><span class="l ru">Тот же маршрут каждый день, настройка заново каждый раз.</span></p></div>
+<div class="pc"><div class="i">⏰</div><h4><span class="l en">One Delay Breaks Everything</span><span class="l ru">Одна задержка ломает всё</span></h4><p><span class="l en">Train late → miss bus → miss meeting. Nothing recalculates.</span><span class="l ru">Поезд опоздал → автобус уехал → встреча сорвана. Ничего не пересчитывается.</span></p></div>
+<div class="pc"><div class="i">🧠</div><h4><span class="l en">Mental Overload</span><span class="l ru">Умственная перегрузка</span></h4><p><span class="l en">Maps + alarms + food + taxi + watch for stop = exhaustion before work.</span><span class="l ru">Карты + будильники + еда + такси = усталость до начала работы.</span></p></div>
+</div>
+</section>
+
+<section class="section">
+<div class="section-label"><span class="l en">THE SOLUTION</span><span class="l ru">РЕШЕНИЕ</span></div>
+<h2><span class="l en">One app. <span>Entire commute.</span> Autopilot.</span><span class="l ru">Одно приложение. <span>Вся поездка.</span> Автопилот.</span></h2>
+<div class="fgrid">
+<div class="fc"><div class="i">📡</div><h4><span class="l en">Works Underground</span><span class="l ru">Работает под землёй</span></h4><p><span class="l en">7-signal sensor fusion — accelerometer, WiFi, Bluetooth, cell, barometer, audio — works where GPS can't.</span><span class="l ru">7 сигналов — акселерометр, WiFi, Bluetooth, вышки, барометр, аудио — работает где GPS не может.</span></p><span class="tag"><span class="l en">NO COMPETITOR HAS THIS</span><span class="l ru">АНАЛОГОВ НЕТ</span></span></div>
+<div class="fc"><div class="i">🔗</div><h4><span class="l en">Multi-Leg Templates</span><span class="l ru">Шаблоны маршрутов</span></h4><p><span class="l en">Metro → bus → taxi. Save once, ride daily. Delay in one leg recalculates everything.</span><span class="l ru">Метро → автобус → такси. Сохраните раз. Задержка пересчитывает всё.</span></p><span class="tag"><span class="l en">DELAY CASCADE</span><span class="l ru">КАСКАДНЫЙ ПЕРЕСЧЁТ</span></span></div>
+<div class="fc"><div class="i">📳</div><h4><span class="l en">Smart Alarm Chain</span><span class="l ru">Умный будильник</span></h4><p><span class="l en">Vibration 2 stops before, sound 1 stop before, full alarm at your station.</span><span class="l ru">Вибрация за 2 остановки, звук за 1, полный будильник на вашей станции.</span></p><span class="tag"><span class="l en">PROGRESSIVE WAKE</span><span class="l ru">ПРОГРЕССИВНЫЙ</span></span></div>
+<div class="fc"><div class="i">📦</div><h4><span class="l en">Deliver to My Future Self</span><span class="l ru">Доставка в будущую точку</span></h4><p><span class="l en">Your predicted location = delivery address. Coffee timed to arrival.</span><span class="l ru">Прогнозируемая локация = адрес доставки. Кофе к прибытию.</span></p><span class="tag"><span class="l en">WORLD FIRST</span><span class="l ru">ВПЕРВЫЕ В МИРЕ</span></span></div>
+<div class="fc"><div class="i">🗺️</div><h4><span class="l en">Invisible Mapping</span><span class="l ru">Невидимое картирование</span></h4><p><span class="l en">Auto-discovers unofficial stops from sensor data. First map of informal transit.</span><span class="l ru">Находит неофициальные остановки. Первая карта неофициального транспорта.</span></p><span class="tag"><span class="l en">WORLD FIRST</span><span class="l ru">ВПЕРВЫЕ В МИРЕ</span></span></div>
+<div class="fc"><div class="i">🛣️</div><h4><span class="l en">Surface Intelligence</span><span class="l ru">Анализ покрытия</span></h4><p><span class="l en">Road quality mapping for cars, bikes, scooters, wheelchairs. Crowdsourced.</span><span class="l ru">Картирование качества дорог для всех видов транспорта. Краудсорсинг.</span></p><span class="tag"><span class="l en">CROWDSOURCED</span><span class="l ru">КРАУДСОРСИНГ</span></span></div>
+</div>
+</section>
+
+<section class="section">
+<div class="section-label"><span class="l en">HOW IT WORKS</span><span class="l ru">КАК ЭТО РАБОТАЕТ</span></div>
+<h2><span class="l en">Three steps. <span>Zero effort.</span></span><span class="l ru">Три шага. <span>Ноль усилий.</span></span></h2>
+<div class="steps">
+<div class="step"><div class="step-num">1</div><h4><span class="l en">Set Route</span><span class="l ru">Маршрут</span></h4><p><span class="l en">Create template once</span><span class="l ru">Создайте шаблон</span></p></div>
+<div class="step"><div class="step-num">2</div><h4><span class="l en">Ride & Sleep</span><span class="l ru">Едьте и спите</span></h4><p><span class="l en">We monitor everything</span><span class="l ru">Мы следим за всем</span></p></div>
+<div class="step"><div class="step-num">3</div><h4><span class="l en">Arrive Fresh</span><span class="l ru">Свежий</span></h4><p><span class="l en">Everything is ready</span><span class="l ru">Всё готово</span></p></div>
+</div>
+</section>
+
+<section class="section">
+<div class="mvp-box">
+<div class="section-label"><span class="l en">LAUNCHING FIRST IN</span><span class="l ru">ЗАПУСК В</span></div>
+<h3><span class="l en">Moscow Metro</span><span class="l ru">Московском метро</span></h3>
+<p><span class="l en">263 stations. Millions of daily riders. GPS fails underground. <strong>The perfect proving ground.</strong></span><span class="l ru">263 станции. Миллионы пассажиров. GPS не работает. <strong>Идеальный полигон.</strong></span></p>
+<div class="mvp-stats">
+<div class="ms"><div class="n">263</div><div class="lb2"><span class="l en">Stations</span><span class="l ru">Станций</span></div></div>
+<div class="ms"><div class="n">7M+</div><div class="lb2"><span class="l en">Daily Riders</span><span class="l ru">Пассажиров/день</span></div></div>
+<div class="ms"><div class="n">0</div><div class="lb2"><span class="l en">Apps work underground</span><span class="l ru">Приложений под землёй</span></div></div>
+</div>
+</div>
+</section>
+
+<section class="section" id="waitlist">
+<div class="waitlist">
+<h2><span class="l en">Be the <span style="color:var(--gold)">first</span></span><span class="l ru">Будьте <span style="color:var(--gold)">первыми</span></span></h2>
+<p class="sub"><span class="l en">Join the waitlist. We'll notify you when CommutePilot launches.</span><span class="l ru">Мы уведомим вас о запуске CommutePilot в Москве.</span></p>
+<div class="wf" id="wf"><input type="email" class="wi" id="ei" placeholder="your@email.com"><button class="cta-btn" onclick="sub()"><span class="l en">Join 🚀</span><span class="l ru">Вступить 🚀</span></button></div>
+<div class="wc" id="wc"><span class="l en">Be among the first to try autopilot commuting</span><span class="l ru">Станьте первыми пользователями автопилота</span></div>
+<div class="ws" id="ws"><span class="l en">✅ You're on the list!</span><span class="l ru">✅ Вы в списке!</span></div>
+</div>
+</section>
+
+<section class="section">
+<div class="section-label"><span class="l en">THE FOUNDER</span><span class="l ru">ОСНОВАТЕЛЬ</span></div>
+<div class="founder"><div>
+<h4>Ayoub Mohamed Samir</h4>
+<div class="t"><span class="l en">PRODUCT VISIONARY · 8 INVENTIONS · 20+ YEARS</span><span class="l ru">ПРОДУКТОВЫЙ ВИЗИОНЕР · 8 ИЗОБРЕТЕНИЙ · 20+ ЛЕТ</span></div>
+<p><span class="l en">Self-taught technologist who presented a national digital currency plan to Egypt's Central Bank in 2006 — a decade before Bitcoin. At every company, replaced teams of 4-10 people. CommutePilot is the product of a lifetime observing broken systems.</span><span class="l ru">Самоучка-технолог, представивший план цифровой валюты в ЦБ Египта в 2006 — за десятилетие до Bitcoin. Стабильно заменял команды из 4-10 человек. CommutePilot — результат жизни, посвящённой наблюдению за сломанными системами.</span></p>
+<a href="https://chesnotech.github.io/" class="fl"><span class="l en">→ Full Portfolio & Story</span><span class="l ru">→ Полное портфолио</span></a>
+</div></div>
+</section>
+
+<section class="section" style="text-align:center;padding-bottom:40px">
+<h2 style="font-family:'Playfair Display',serif;font-size:32px;margin-bottom:15px"><span class="l en">Stop managing your commute.<br><span style="color:var(--gold)">Let it manage itself.</span></span><span class="l ru">Перестаньте управлять поездкой.<br><span style="color:var(--gold)">Пусть она управляет собой.</span></span></h2>
+<a href="#waitlist" class="cta-btn" style="margin-top:20px"><span class="l en">🚀 Join the Waitlist</span><span class="l ru">🚀 Присоединиться</span></a>
+</section>
+
+<footer class="footer"><p>COMMUTEPILOT · MOSCOW · 2026</p><p style="margin-top:5px"><a href="https://chesnotech.github.io/">chesnotech.github.io</a></p></footer>
+</div>
+
+<script>
+function toggleLang(){const h=document.documentElement;h.dataset.lang=h.dataset.lang==='en'?'ru':'en'}
+function sub(){const e=document.getElementById('ei').value;if(!e||!e.includes('@')){document.getElementById('ei').style.borderColor='#E76F51';return}const l=JSON.parse(localStorage.getItem('cp_wl')||'[]');l.push({email:e,date:new Date().toISOString()});localStorage.setItem('cp_wl',JSON.stringify(l));fetch('https://formspree.io/f/commutepilot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email:e})}).catch(()=>{});document.getElementById('wf').style.display='none';document.getElementById('wc').style.display='none';document.getElementById('ws').style.display='block'}
+const c=document.getElementById('particles'),x=c.getContext('2d');c.width=window.innerWidth;c.height=window.innerHeight;const ps=[];for(let i=0;i<30;i++)ps.push({x:Math.random()*c.width,y:Math.random()*c.height,s:Math.random()*1.5+.5,dx:(Math.random()-.5)*.2,dy:(Math.random()-.5)*.2,o:Math.random()*.3+.1});function f(){x.clearRect(0,0,c.width,c.height);ps.forEach(p=>{p.x+=p.dx;p.y+=p.dy;if(p.x<0)p.x=c.width;if(p.x>c.width)p.x=0;if(p.y<0)p.y=c.height;if(p.y>c.height)p.y=0;x.beginPath();x.arc(p.x,p.y,p.s,0,Math.PI*2);x.fillStyle=`rgba(212,168,83,${p.o})`;x.fill()});ps.forEach((a,i)=>ps.slice(i+1).forEach(b=>{const dx=a.x-b.x,dy=a.y-b.y,d=Math.sqrt(dx*dx+dy*dy);if(d<120){x.beginPath();x.moveTo(a.x,a.y);x.lineTo(b.x,b.y);x.strokeStyle=`rgba(212,168,83,${.05*(1-d/120)})`;x.lineWidth=.5;x.stroke()}}));requestAnimationFrame(f)}f();
+window.addEventListener('resize',()=>{c.width=window.innerWidth;c.height=window.innerHeight});
+document.querySelectorAll('a[href^="#"]').forEach(a=>{a.addEventListener('click',e=>{e.preventDefault();document.querySelector(a.getAttribute('href')).scrollIntoView({behavior:'smooth'})})});
+</script>
+</body>
+</html>
