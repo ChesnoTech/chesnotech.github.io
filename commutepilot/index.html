@@ -66,6 +66,18 @@ a{color:var(--teal);text-decoration:none}a:hover{color:var(--gold)}
 .fl{color:var(--gold);font-family:'JetBrains Mono',monospace;font-size:11px;margin-top:10px;display:inline-block}
 .footer{text-align:center;padding:40px 30px;border-top:1px solid var(--card-border)}
 .footer p{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--gray);letter-spacing:2px}
+.download-section{padding:60px 30px 40px;text-align:center;position:relative}.download-section::before{content:'';position:absolute;top:0;left:50%;transform:translateX(-50%);width:600px;height:400px;background:radial-gradient(circle,rgba(46,196,182,0.06) 0%,transparent 70%);pointer-events:none}
+.download-inner{max-width:700px;margin:0 auto;background:var(--bg3);border:2px solid var(--gold-dim);border-radius:20px;padding:40px 30px;position:relative;overflow:hidden}
+.download-inner::after{content:'';position:absolute;top:-50%;right:-50%;width:200%;height:200%;background:radial-gradient(circle at 70% 30%,rgba(212,168,83,0.03) 0%,transparent 50%);pointer-events:none}
+.download-badge{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--teal);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;display:inline-block;padding:4px 12px;border:1px solid var(--teal-dim);border-radius:12px}
+.download-title{font-family:'Playfair Display',serif;font-size:clamp(22px,3.5vw,32px);font-weight:700;margin-bottom:8px;color:var(--white)}
+.download-title span{color:var(--gold)}
+.download-subtitle{font-size:14px;color:var(--gray-light);margin-bottom:24px;font-weight:300}
+.download-btn{background:var(--gold);color:var(--bg);border:none;padding:16px 40px;border-radius:30px;font-family:'Source Sans 3',sans-serif;font-weight:700;font-size:17px;cursor:pointer;transition:all .3s;display:inline-flex;align-items:center;gap:10px;text-decoration:none;position:relative;z-index:1}
+.download-btn:hover{transform:translateY(-2px);box-shadow:0 8px 30px rgba(212,168,83,0.35);color:var(--bg)}
+.download-note{font-family:'JetBrains Mono',monospace;font-size:11px;color:var(--gray);letter-spacing:1px;margin-top:16px}
+.download-features{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:20px}
+.download-feat{font-size:12px;color:var(--gray-light);background:var(--bg);padding:4px 12px;border-radius:20px;border:1px solid var(--card-border)}
 canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:.2}
 .content{position:relative;z-index:1}
 @media(max-width:768px){.hero h1{font-size:32px}.fgrid{grid-template-columns:1fr}.pgrid{grid-template-columns:1fr}.steps{flex-direction:column;gap:20px}.steps::before{display:none}.mvp-stats{flex-direction:column;gap:15px}.founder{flex-direction:column;text-align:center}.nav{padding:10px 15px}.waitlist{padding:40px 20px}}
@@ -74,7 +86,7 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 <body>
 <canvas id="particles"></canvas>
 <div class="content">
-<nav class="nav"><div class="nav-logo">Commute<span>Pilot</span></div><div class="nav-btns"><button class="nav-btn" onclick="toggleLang()"><span class="l en">RU</span><span class="l ru">EN</span></button><a href="#waitlist" class="cta-btn" style="padding:8px 20px;font-size:13px"><span class="l en">Join Waitlist</span><span class="l ru">В список</span></a></div></nav>
+<nav class="nav"><div class="nav-logo">Commute<span>Pilot</span></div><div class="nav-btns"><button class="nav-btn" onclick="toggleLang()"><span class="l en">RU</span><span class="l ru">EN</span></button><a href="https://expo.dev/artifacts/eas/w5zZd4vWM2SoDixiaUG5ny.apk" class="cta-btn" style="padding:8px 20px;font-size:13px"><span class="l en">Download APK</span><span class="l ru">Скачать APK</span></a></div></nav>
 
 <section class="hero">
 <div class="hero-badge"><span class="l en">COMING TO MOSCOW METRO FIRST</span><span class="l ru">СНАЧАЛА В МОСКОВСКОМ МЕТРО</span></div>
@@ -93,6 +105,22 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 </div>
 </section>
 
+<section class="download-section">
+<div class="download-inner">
+<div class="download-badge"><span class="l en">NOW AVAILABLE</span><span class="l ru">УЖЕ ДОСТУПНО</span></div>
+<div class="download-title"><span class="l en">Download <span>CommutePilot</span> for Android</span><span class="l ru">Скачайте <span>CommutePilot</span> для Android</span></div>
+<div class="download-subtitle"><span class="l en">430 stations. 19 metro lines. 3 languages. Works offline.</span><span class="l ru">430 станций. 19 линий метро. 3 языка. Работает офлайн.</span></div>
+<a href="https://expo.dev/artifacts/eas/w5zZd4vWM2SoDixiaUG5ny.apk" class="download-btn"><span class="l en">Download APK v1.0.0</span><span class="l ru">Скачать APK v1.0.0</span></a>
+<div class="download-note"><span class="l en">Coming soon to RuStore and Google Play</span><span class="l ru">Скоро в RuStore и Google Play</span></div>
+<div class="download-features">
+<span class="download-feat"><span class="l en">Route Finder</span><span class="l ru">Поиск маршрутов</span></span>
+<span class="download-feat"><span class="l en">QR Sharing</span><span class="l ru">QR-код</span></span>
+<span class="download-feat"><span class="l en">Metro Map</span><span class="l ru">Карта метро</span></span>
+<span class="download-feat"><span class="l en">RU / EN / AR</span><span class="l ru">RU / EN / AR</span></span>
+</div>
+</div>
+</section>
+
 <section class="section">
 <div class="section-label"><span class="l en">THE PROBLEM</span><span class="l ru">ПРОБЛЕМА</span></div>
 <h2><span class="l en">Commuting is <span>broken</span></span><span class="l ru">Поездки <span>сломаны</span></span></h2>
@@ -106,31 +134,16 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 </section>
 
 <section class="section">
-<div class="section-label"><span class="l en">THE SOLUTION</span><span class="l ru">РЕШЕНИЕ</span></div>
-<h2><span class="l en">One app. <span>Entire commute.</span> Autopilot.</span><span class="l ru">Одно приложение. <span>Вся поездка.</span> Автопилот.</span></h2>
+<div class="section-label"><span class="l en">WHAT'S INSIDE</span><span class="l ru">ЧТО ВНУТРИ</span></div>
+<h2><span class="l en">Built for <span>real commuters.</span></span><span class="l ru">Создано для <span>реальных пассажиров.</span></span></h2>
+<p class="lead"><span class="l en">Everything you need for the Moscow Metro and beyond, in one offline-first app.</span><span class="l ru">Всё для московского метро и не только, в одном офлайн-приложении.</span></p>
 <div class="fgrid">
-<div class="fc"><div class="i">📡</div><h4><span class="l en">Works Underground</span><span class="l ru">Работает под землёй</span></h4><p><span class="l en">7-signal sensor fusion — accelerometer, WiFi, Bluetooth, cell, barometer, audio — works where GPS can't.</span><span class="l ru">7 сигналов — акселерометр, WiFi, Bluetooth, вышки, барометр, аудио — работает где GPS не может.</span></p><span class="tag"><span class="l en">NO COMPETITOR HAS THIS</span><span class="l ru">АНАЛОГОВ НЕТ</span></span></div>
-<div class="fc"><div class="i">🔗</div><h4><span class="l en">Multi-Leg Templates</span><span class="l ru">Шаблоны маршрутов</span></h4><p><span class="l en">Metro → bus → taxi. Save once, ride daily. Delay in one leg recalculates everything.</span><span class="l ru">Метро → автобус → такси. Сохраните раз. Задержка пересчитывает всё.</span></p><span class="tag"><span class="l en">DELAY CASCADE</span><span class="l ru">КАСКАДНЫЙ ПЕРЕСЧЁТ</span></span></div>
-<div class="fc"><div class="i">📳</div><h4><span class="l en">Smart Alarm Chain</span><span class="l ru">Умный будильник</span></h4><p><span class="l en">Vibration 2 stops before, sound 1 stop before, full alarm at your station.</span><span class="l ru">Вибрация за 2 остановки, звук за 1, полный будильник на вашей станции.</span></p><span class="tag"><span class="l en">PROGRESSIVE WAKE</span><span class="l ru">ПРОГРЕССИВНЫЙ</span></span></div>
-<div class="fc" style="grid-column:1/-1;padding:30px">
-<div class="i">📦</div>
-<h4 style="font-size:18px;margin-bottom:4px"><span class="l en">Deliver to My Future Self</span><span class="l ru">Доставка в будущую точку</span></h4>
-<p style="color:var(--gold);font-size:13px;margin-bottom:12px;font-weight:600"><span class="l en">Order anything. It arrives where you're heading — not where you are now.</span><span class="l ru">Закажите что угодно. Доставка туда, куда вы едете — а не где вы сейчас.</span></p>
-<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin:12px 0">
-<div style="background:var(--bg);border-radius:8px;padding:10px;text-align:center"><span style="font-size:22px">☕</span><div style="font-size:12px;color:var(--white);margin-top:4px"><span class="l en">Coffee</span><span class="l ru">Кофе</span></div><div style="font-size:10px;color:var(--gray)"><span class="l en">Timed to arrival</span><span class="l ru">К моменту прибытия</span></div></div>
-<div style="background:var(--bg);border-radius:8px;padding:10px;text-align:center"><span style="font-size:22px">🍔</span><div style="font-size:12px;color:var(--white);margin-top:4px"><span class="l en">Takeaway</span><span class="l ru">Еда</span></div><div style="font-size:10px;color:var(--gray)"><span class="l en">Hot when you arrive</span><span class="l ru">Горячая к приезду</span></div></div>
-<div style="background:var(--bg);border-radius:8px;padding:10px;text-align:center"><span style="font-size:22px">📦</span><div style="font-size:12px;color:var(--white);margin-top:4px"><span class="l en">Parcel</span><span class="l ru">Посылка</span></div><div style="font-size:10px;color:var(--gray)"><span class="l en">To your next stop</span><span class="l ru">На следующую точку</span></div></div>
-<div style="background:var(--bg);border-radius:8px;padding:10px;text-align:center"><span style="font-size:22px">💊</span><div style="font-size:12px;color:var(--white);margin-top:4px"><span class="l en">Pharmacy</span><span class="l ru">Аптека</span></div><div style="font-size:10px;color:var(--gray)"><span class="l en">On your route</span><span class="l ru">По пути</span></div></div>
-<div style="background:var(--bg);border-radius:8px;padding:10px;text-align:center"><span style="font-size:22px">🛒</span><div style="font-size:12px;color:var(--white);margin-top:4px"><span class="l en">Groceries</span><span class="l ru">Продукты</span></div><div style="font-size:10px;color:var(--gray)"><span class="l en">At your lobby</span><span class="l ru">В подъезде</span></div></div>
-</div>
-<div style="margin-top:14px;font-size:12px;color:var(--gray-light);line-height:1.6">
-<span class="l en">Your <strong style="color:var(--teal)">predicted location</strong> = delivery address. Order lunch at 11am → it arrives at your office at 12:15, exactly when you walk in from the metro. Pharmacy order in the morning → picked up at the station near work. Groceries during your commute home → in your building lobby when you arrive.</span>
-<span class="l ru">Ваша <strong style="color:var(--teal)">прогнозируемая локация</strong> = адрес доставки. Закажите обед в 11:00 → он будет в офисе в 12:15, когда вы выйдете из метро. Лекарства утром → заберите у станции рядом с работой. Продукты по дороге домой → в подъезде к вашему приходу.</span>
-</div>
-<span class="tag"><span class="l en">WORLD FIRST</span><span class="l ru">ВПЕРВЫЕ В МИРЕ</span></span>
-</div>
-<div class="fc"><div class="i">🗺️</div><h4><span class="l en">Invisible Mapping</span><span class="l ru">Невидимое картирование</span></h4><p><span class="l en">Auto-discovers unofficial stops from sensor data. First map of informal transit.</span><span class="l ru">Находит неофициальные остановки. Первая карта неофициального транспорта.</span></p><span class="tag"><span class="l en">WORLD FIRST</span><span class="l ru">ВПЕРВЫЕ В МИРЕ</span></span></div>
-<div class="fc"><div class="i">🛣️</div><h4><span class="l en">Surface Intelligence</span><span class="l ru">Анализ покрытия</span></h4><p><span class="l en">Road quality mapping for cars, bikes, scooters, wheelchairs. Crowdsourced.</span><span class="l ru">Картирование качества дорог для всех видов транспорта. Краудсорсинг.</span></p><span class="tag"><span class="l en">CROWDSOURCED</span><span class="l ru">КРАУДСОРСИНГ</span></span></div>
+<div class="fc"><div class="i">🔍</div><h4><span class="l en">Route Finder</span><span class="l ru">Поиск маршрутов</span></h4><p><span class="l en">Address-based search across all metro and MCD lines. Find routes between any stations or addresses — free, no API key required.</span><span class="l ru">Поиск по адресам по всем линиям метро и МЦД. Находите маршруты между станциями или адресами — бесплатно, без API-ключей.</span></p><span class="tag"><span class="l en">FREE ADDRESS SEARCH</span><span class="l ru">БЕСПЛАТНЫЙ ПОИСК</span></span></div>
+<div class="fc"><div class="i">🗺️</div><h4><span class="l en">Interactive Metro Map</span><span class="l ru">Интерактивная карта метро</span></h4><p><span class="l en">Full interactive map with 430 stations across 19 lines, including all MCD lines. Tap any station to start a route.</span><span class="l ru">Полная интерактивная карта с 430 станциями на 19 линиях, включая все МЦД. Нажмите на станцию для маршрута.</span></p><span class="tag"><span class="l en">430 STATIONS</span><span class="l ru">430 СТАНЦИЙ</span></span></div>
+<div class="fc"><div class="i">📳</div><h4><span class="l en">Progressive Alarm</span><span class="l ru">Прогрессивный будильник</span></h4><p><span class="l en">Vibration 2 stops before, sound 1 stop before, full alarm at your station. Works underground without GPS.</span><span class="l ru">Вибрация за 2 остановки, звук за 1, полный будильник на вашей станции. Работает без GPS.</span></p><span class="tag"><span class="l en">PROGRESSIVE WAKE</span><span class="l ru">ПРОГРЕССИВНЫЙ</span></span></div>
+<div class="fc"><div class="i">🔗</div><h4><span class="l en">Multi-Leg Templates</span><span class="l ru">Шаблоны маршрутов</span></h4><p><span class="l en">Metro, bus, walk, taxi — save multi-leg journeys as templates. One tap to activate your daily commute.</span><span class="l ru">Метро, автобус, пешком, такси — сохраняйте многоэтапные маршруты как шаблоны. Один тап для активации.</span></p><span class="tag"><span class="l en">SAVE AND REUSE</span><span class="l ru">СОХРАНЯЙТЕ</span></span></div>
+<div class="fc"><div class="i">📲</div><h4><span class="l en">QR Code Sharing</span><span class="l ru">QR-код маршрутов</span></h4><p><span class="l en">Share any route as a QR code. Friends and colleagues scan and get the exact same route loaded instantly.</span><span class="l ru">Делитесь маршрутами через QR-код. Друзья и коллеги сканируют и мгновенно получают маршрут.</span></p><span class="tag"><span class="l en">INSTANT SHARING</span><span class="l ru">МГНОВЕННЫЙ ОБМЕН</span></span></div>
+<div class="fc"><div class="i">🌍</div><h4><span class="l en">3 Languages</span><span class="l ru">3 языка</span></h4><p><span class="l en">Full interface in Russian, English, and Arabic. All station names in both Russian and English transliteration.</span><span class="l ru">Полный интерфейс на русском, английском и арабском. Все станции на русском и английском.</span></p><span class="tag"><span class="l en">RU / EN / AR</span><span class="l ru">RU / EN / AR</span></span></div>
 </div>
 </section>
 
@@ -147,12 +160,13 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 <section class="section">
 <div class="mvp-box">
 <div class="section-label"><span class="l en">LAUNCHING FIRST IN</span><span class="l ru">ЗАПУСК В</span></div>
-<h3><span class="l en">Moscow Metro</span><span class="l ru">Московском метро</span></h3>
-<p><span class="l en">263 stations. Millions of daily riders. GPS fails underground. <strong>The perfect proving ground.</strong></span><span class="l ru">263 станции. Миллионы пассажиров. GPS не работает. <strong>Идеальный полигон.</strong></span></p>
+<h3><span class="l en">Moscow Metro + MCD</span><span class="l ru">Московское метро + МЦД</span></h3>
+<p><span class="l en">430 stations across 19 lines. Millions of daily riders. GPS fails underground. <strong>CommutePilot works anyway.</strong></span><span class="l ru">430 станций на 19 линиях. Миллионы пассажиров. GPS не работает. <strong>CommutePilot работает.</strong></span></p>
 <div class="mvp-stats">
-<div class="ms"><div class="n">263</div><div class="lb2"><span class="l en">Stations</span><span class="l ru">Станций</span></div></div>
+<div class="ms"><div class="n">430</div><div class="lb2"><span class="l en">Stations</span><span class="l ru">Станций</span></div></div>
+<div class="ms"><div class="n">19</div><div class="lb2"><span class="l en">Metro Lines</span><span class="l ru">Линий метро</span></div></div>
 <div class="ms"><div class="n">7M+</div><div class="lb2"><span class="l en">Daily Riders</span><span class="l ru">Пассажиров/день</span></div></div>
-<div class="ms"><div class="n">0</div><div class="lb2"><span class="l en">Apps work underground</span><span class="l ru">Приложений под землёй</span></div></div>
+<div class="ms"><div class="n">3</div><div class="lb2"><span class="l en">Languages</span><span class="l ru">Языка</span></div></div>
 </div>
 </div>
 </section>
@@ -184,7 +198,8 @@ canvas#particles{position:fixed;top:0;left:0;width:100%;height:100%;pointer-even
 
 <section class="section" style="text-align:center;padding-bottom:40px">
 <h2 style="font-family:'Playfair Display',serif;font-size:32px;margin-bottom:15px"><span class="l en">Stop managing your commute.<br><span style="color:var(--gold)">Let it manage itself.</span></span><span class="l ru">Перестаньте управлять поездкой.<br><span style="color:var(--gold)">Пусть она управляет собой.</span></span></h2>
-<a href="#waitlist" class="cta-btn" style="margin-top:20px"><span class="l en">🚀 Join the Waitlist</span><span class="l ru">🚀 Присоединиться</span></a>
+<a href="https://expo.dev/artifacts/eas/w5zZd4vWM2SoDixiaUG5ny.apk" class="cta-btn" style="margin-top:20px"><span class="l en">Download APK v1.0.0</span><span class="l ru">Скачать APK v1.0.0</span></a>
+<div style="margin-top:12px"><a href="#waitlist" style="font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--gray-light)"><span class="l en">or join the waitlist for store launch</span><span class="l ru">или подпишитесь на уведомление о публикации в магазинах</span></a></div>
 </section>
 
 <footer class="footer"><p>COMMUTEPILOT · MOSCOW · 2026</p><p style="margin-top:5px"><a href="https://chesnotech.github.io/">chesnotech.github.io</a></p></footer>
